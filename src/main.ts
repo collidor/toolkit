@@ -1,11 +1,22 @@
 import {
-  type Inject,
-  Injector,
-  type Register,
-  type SafeInject,
-  type Type,
-  type Unregister,
-} from "@collidor/injector";
+  AsyncCommandBus,
+  type AsyncCommandBusPlugin,
+  type AsyncPluginHandler,
+  BaseCommandBus,
+  type BasePlugin,
+  Command,
+  COMMAND_RETURN,
+  CommandBus,
+  type CommandBusOptions,
+  type CommandBusPlugin,
+  type CommandSerializer,
+  httpClientPlugin,
+  httpServerPlugin,
+  type PluginHandler,
+  PortChannelPlugin,
+  type PortChannelPluginOptions,
+  type StreamPluginHandler,
+} from "./command.ts";
 
 import {
   type Channel,
@@ -26,33 +37,19 @@ import {
   type SubscribeEvent,
   type UnsubscribeEvent,
   type VerboseLevel,
-} from "@collidor/event";
+} from "./event.ts";
 
 import {
-  AsyncCommandBus,
-  type AsyncCommandBusPlugin,
-  type AsyncPluginHandler,
-  BaseCommandBus,
-  type BasePlugin,
-  Command,
-  COMMAND_RETURN,
-  CommandBus,
-  type CommandBusOptions,
-  type CommandBusPlugin,
-  type CommandSerializer,
-  httpClientPlugin,
-  httpServerPlugin,
-  type PluginHandler,
-  PortChannelPlugin,
-  type PortChannelPluginOptions,
-  type StreamPluginHandler,
-} from "@collidor/command";
+  type Inject,
+  Injector,
+  type Register,
+  type SafeInject,
+  type Type,
+  type Unregister,
+} from "./injector.ts";
 
-import {
-  SchemaCommand,
-  schemaCommand,
-  type SchemaCommandType,
-} from "@collidor/schema-command";
+import { ObservableCommandBus } from "./observable-command.ts";
+import { type EventData, ObservableEventBus } from "./observable-event.ts";
 
 import {
   type Err,
@@ -61,10 +58,13 @@ import {
   type Ok,
   Result,
   type Unwrap,
-} from "@collidor/result";
+} from "./result.ts";
 
-import { ObservableCommandBus } from "@collidor/observable-command";
-import { type EventData, ObservableEventBus } from "@collidor/observable-event";
+import {
+  SchemaCommand,
+  schemaCommand,
+  type SchemaCommandType,
+} from "./schema-command.ts";
 
 export {
   AsyncCommandBus,
