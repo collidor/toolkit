@@ -1,3 +1,19 @@
+# [0.2.0](https://github.com/collidor/toolkit/compare/v0.1.7...v0.2.0) (2026-08-17)
+
+
+### Bug Fixes
+
+* **ci:** add --allow-dirty to jsr publish to ignore uncommitted lockfiles ([3de6db7](https://github.com/collidor/toolkit/commit/3de6db78887a1fbf0b1010f1a489023c60e1fb77))
+* **ci:** add dummy NPM_TOKEN to satisfy semantic-release preflight check for OIDC ([47c980c](https://github.com/collidor/toolkit/commit/47c980cb367b9edd04023e2ff3584adddc540d95))
+* **ci:** decouple npm and jsr publish from semantic-release ([907ac82](https://github.com/collidor/toolkit/commit/907ac82ff50f8d95b73b8d755d90eb1192345586))
+* **ci:** re-enable native semantic-release npm publishing for OIDC ([261d789](https://github.com/collidor/toolkit/commit/261d7898b028872c77cb3366570fc7a16395ae27))
+* trigger patch release ([a54ae2f](https://github.com/collidor/toolkit/commit/a54ae2f391ebc2ae9f4a8dccbc3149839f56b81a))
+
+
+### Features
+
+* **toolkit:** export individual entry points for all re-exported packages ([aeb09a7](https://github.com/collidor/toolkit/commit/aeb09a789eef9ca265e781869d4e29e79ed5fcbb))
+
 # @collidor/command
 
 ## 0.1.7
