@@ -1,10 +1,10 @@
 {
   "version": "5",
   "specifiers": {
-    "jsr:@collidor/command@^7.0.1": "7.0.5",
-    "jsr:@collidor/command@^7.0.5": "7.0.5",
-    "jsr:@collidor/event@^4.3.3": "4.3.6",
-    "jsr:@collidor/event@^4.3.6": "4.3.6",
+    "jsr:@collidor/command@^7.0.1": "7.1.0",
+    "jsr:@collidor/command@^7.1.0": "7.1.0",
+    "jsr:@collidor/event@^4.3.3": "4.4.0",
+    "jsr:@collidor/event@^4.4.0": "4.4.0",
     "jsr:@collidor/injector@^2.4.20": "2.4.20",
     "jsr:@collidor/observable-command@^1.0.4": "1.0.4",
     "jsr:@collidor/observable-event@^1.0.4": "1.0.4",
@@ -27,14 +27,14 @@
     "npm:tsup@8.5.0": "8.5.0_typescript@5.8.3_esbuild@0.25.5"
   },
   "jsr": {
-    "@collidor/command@7.0.5": {
-      "integrity": "333e9589439d4a3f73373459d23e3ad5108b288aea89906e2bae5fb6ace520c5",
+    "@collidor/command@7.1.0": {
+      "integrity": "01850116182b4dcc5eed2298264f045c7f36e6465491769aa7ad106d51d86892",
       "dependencies": [
         "jsr:@collidor/event@^4.3.3"
       ]
     },
-    "@collidor/event@4.3.6": {
-      "integrity": "1be0f7d4160b74069b7fdec7b07569095df3a49c02e791cc94dd19dd8aed216f"
+    "@collidor/event@4.4.0": {
+      "integrity": "f2269c2d53c3b5a2b2c8fe662cd30c4aab14e6a638832cafc2f0d02e55481061"
     },
     "@collidor/injector@2.4.20": {
       "integrity": "67ed8461d22d14a735ae5110f06f4c570900c9f8af7893615e832a766a843c72"
@@ -888,8 +888,8 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@collidor/command@^7.0.5",
-      "jsr:@collidor/event@^4.3.6",
+      "jsr:@collidor/command@^7.1.0",
+      "jsr:@collidor/event@^4.4.0",
       "jsr:@collidor/injector@^2.4.20",
       "jsr:@collidor/observable-command@^1.0.4",
       "jsr:@collidor/observable-event@^1.0.4",
@@ -900,8 +900,8 @@
     ],
     "packageJson": {
       "dependencies": [
-        "npm:@collidor/command@^7.0.5",
-        "npm:@collidor/event@^4.3.6",
+        "npm:@collidor/command@^7.1.0",
+        "npm:@collidor/event@^4.4.0",
         "npm:@collidor/injector@^2.4.20",
         "npm:@collidor/observable-command@^1.0.4",
         "npm:@collidor/observable-event@^1.0.4",

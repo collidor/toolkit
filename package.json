@@ -84,8 +84,8 @@
         "typescript": "5.9.2"
     },
     "dependencies": {
-        "@collidor/command": "^7.0.5",
-        "@collidor/event": "^4.3.6",
+        "@collidor/command": "^7.1.0",
+        "@collidor/event": "^4.4.0",
         "@collidor/injector": "^2.4.20",
         "@collidor/observable-command": "^1.0.4",
         "@collidor/observable-event": "^1.0.4",
