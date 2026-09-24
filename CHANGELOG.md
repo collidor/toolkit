@@ -1,3 +1,11 @@
+## [0.2.2](https://github.com/collidor/toolkit/compare/v0.2.1...v0.2.2) (2026-09-24)
+
+
+### Bug Fixes
+
+* **deps:** update all collidor dependencies to latest ([c173b04](https://github.com/collidor/toolkit/commit/c173b04f1c2297abb9cf61caca9cc5c6112a94d0))
+* **deps:** update schema-command dependency range ([5240347](https://github.com/collidor/toolkit/commit/5240347696f56d8eb0aad9326ca2cdb688398dbf))
+
 ## [0.2.1](https://github.com/collidor/toolkit/compare/v0.2.0...v0.2.1) (2026-09-24)
 
 
