@@ -1,15 +1,14 @@
 {
   "version": "5",
   "specifiers": {
-    "jsr:@collidor/command@^7.0.1": "7.1.0",
-    "jsr:@collidor/command@^7.1.0": "7.1.0",
-    "jsr:@collidor/event@^4.3.3": "4.4.0",
+    "jsr:@collidor/command@^7.1.0": "7.1.1",
+    "jsr:@collidor/command@^7.1.1": "7.1.1",
     "jsr:@collidor/event@^4.4.0": "4.4.0",
     "jsr:@collidor/injector@^2.4.20": "2.4.20",
-    "jsr:@collidor/observable-command@^1.0.4": "1.0.4",
-    "jsr:@collidor/observable-event@^1.0.4": "1.0.4",
+    "jsr:@collidor/observable-command@^1.0.5": "1.0.5",
+    "jsr:@collidor/observable-event@^1.0.5": "1.0.5",
     "jsr:@collidor/result@^1.0.5": "1.0.5",
-    "jsr:@collidor/schema-command@^1.0.4": "1.0.4",
+    "jsr:@collidor/schema-command@^1.0.5": "1.0.5",
     "jsr:@std/assert@*": "1.0.12",
     "jsr:@std/assert@^1.0.10": "1.0.11",
     "jsr:@std/assert@^1.0.11": "1.0.19",
@@ -27,10 +26,10 @@
     "npm:tsup@8.5.0": "8.5.0_typescript@5.8.3_esbuild@0.25.5"
   },
   "jsr": {
-    "@collidor/command@7.1.0": {
-      "integrity": "01850116182b4dcc5eed2298264f045c7f36e6465491769aa7ad106d51d86892",
+    "@collidor/command@7.1.1": {
+      "integrity": "bc3b929efd9c36983bec09d29082851d2f44f2b8691e85660da55affea6aa2fb",
       "dependencies": [
-        "jsr:@collidor/event@^4.3.3"
+        "jsr:@collidor/event"
       ]
     },
     "@collidor/event@4.4.0": {
@@ -39,25 +38,25 @@
     "@collidor/injector@2.4.20": {
       "integrity": "67ed8461d22d14a735ae5110f06f4c570900c9f8af7893615e832a766a843c72"
     },
-    "@collidor/observable-command@1.0.4": {
-      "integrity": "d48b998b3d1a02bd3668f54415ea70fffdb6106c75a1a7088940e25ea04220ad",
+    "@collidor/observable-command@1.0.5": {
+      "integrity": "eeea44dba4874f8d853bf189015f40f8890b8b93786109f5e534058f5898b67b",
       "dependencies": [
-        "jsr:@collidor/command@^7.0.1"
+        "jsr:@collidor/command@^7.1.0"
       ]
     },
-    "@collidor/observable-event@1.0.4": {
-      "integrity": "349dcdf124dd105d970fa37ff3becf17bf684d425e60087af67093179d880383",
+    "@collidor/observable-event@1.0.5": {
+      "integrity": "34d6cafd98e287e74f9bf37ff7b6d50f014be8d03a997b3c78913876e46c80f7",
       "dependencies": [
-        "jsr:@collidor/event@^4.3.3"
+        "jsr:@collidor/event"
       ]
     },
     "@collidor/result@1.0.5": {
       "integrity": "efb50b415310ab5a0ea8d55cc74a5bbe109f6bc01c23ed20727a7f01746bd84f"
     },
-    "@collidor/schema-command@1.0.4": {
-      "integrity": "b903d75246aac49dfcb6ffbf01b3a7e20bcc9cc1c7b7cb2b6ca3f88ee608ebda",
+    "@collidor/schema-command@1.0.5": {
+      "integrity": "90f198447874cfb0e076af44d4c73762cc4d0cebdb50898e5a15bb2ae9e2af8e",
       "dependencies": [
-        "jsr:@collidor/command@^7.0.1"
+        "jsr:@collidor/command@^7.1.0"
       ]
     },
     "@std/assert@1.0.11": {
@@ -888,25 +887,25 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@collidor/command@^7.1.0",
+      "jsr:@collidor/command@^7.1.1",
       "jsr:@collidor/event@^4.4.0",
       "jsr:@collidor/injector@^2.4.20",
-      "jsr:@collidor/observable-command@^1.0.4",
-      "jsr:@collidor/observable-event@^1.0.4",
+      "jsr:@collidor/observable-command@^1.0.5",
+      "jsr:@collidor/observable-event@^1.0.5",
       "jsr:@collidor/result@^1.0.5",
-      "jsr:@collidor/schema-command@^1.0.4",
+      "jsr:@collidor/schema-command@^1.0.5",
       "jsr:@std/assert@^1.0.11",
       "jsr:@std/testing@^1.0.9"
     ],
     "packageJson": {
       "dependencies": [
-        "npm:@collidor/command@^7.1.0",
+        "npm:@collidor/command@^7.1.1",
         "npm:@collidor/event@^4.4.0",
         "npm:@collidor/injector@^2.4.20",
-        "npm:@collidor/observable-command@^1.0.4",
-        "npm:@collidor/observable-event@^1.0.4",
+        "npm:@collidor/observable-command@^1.0.5",
+        "npm:@collidor/observable-event@^1.0.5",
         "npm:@collidor/result@^1.0.5",
-        "npm:@collidor/schema-command@^1.0.4",
+        "npm:@collidor/schema-command@^1.0.5",
         "npm:@semantic-release/changelog@^6.0.3",
         "npm:@semantic-release/exec@^6.0.3",
         "npm:@semantic-release/git@^10.0.1",
