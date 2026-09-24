@@ -905,7 +905,7 @@
         "npm:@collidor/observable-command@^1.0.5",
         "npm:@collidor/observable-event@^1.0.5",
         "npm:@collidor/result@^1.0.5",
-        "npm:@collidor/schema-command@^1.0.5",
+        "npm:@collidor/schema-command@^1.0.4",
         "npm:@semantic-release/changelog@^6.0.3",
         "npm:@semantic-release/exec@^6.0.3",
         "npm:@semantic-release/git@^10.0.1",
