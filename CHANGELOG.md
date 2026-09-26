@@ -1,3 +1,10 @@
+## [0.2.3](https://github.com/collidor/toolkit/compare/v0.2.2...v0.2.3) (2026-09-26)
+
+
+### Bug Fixes
+
+* **deps:** update collidor dependencies ([b7bd5be](https://github.com/collidor/toolkit/commit/b7bd5bebd28e9c434e0bd6a523292cc20dbb7582))
+
 ## [0.2.2](https://github.com/collidor/toolkit/compare/v0.2.1...v0.2.2) (2026-09-24)
 
 
