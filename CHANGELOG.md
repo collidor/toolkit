@@ -1,3 +1,15 @@
+# [0.3.0](https://github.com/collidor/toolkit/compare/v0.2.3...v0.3.0) (2026-09-26)
+
+
+### Bug Fixes
+
+* **test:** configure deno test exclusion for demo directory and clean unused imports ([293e300](https://github.com/collidor/toolkit/commit/293e30053eee3700caeb95d907531d8092abe96d))
+
+
+### Features
+
+* **demo:** add multi-framework pokédex showcase, dynamic unmounting, and github pages deployment ([3a04aa8](https://github.com/collidor/toolkit/commit/3a04aa80d9c0cdb2d87183088528c0947bae4633))
+
 ## [0.2.3](https://github.com/collidor/toolkit/compare/v0.2.2...v0.2.3) (2026-09-26)
 
 
