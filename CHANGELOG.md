@@ -1,3 +1,10 @@
+## [0.3.1](https://github.com/collidor/toolkit/compare/v0.3.0...v0.3.1) (2026-09-26)
+
+
+### Bug Fixes
+
+* **ci:** sync package-lock.json and bump node-version to 24 for github pages workflow ([60463c1](https://github.com/collidor/toolkit/commit/60463c1bcac7e1b94ce5b9574ccd2cee5a3cec8c))
+
 # [0.3.0](https://github.com/collidor/toolkit/compare/v0.2.3...v0.3.0) (2026-09-26)
 
 
