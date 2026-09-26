@@ -15,6 +15,7 @@
     "prismjs": "^1.30.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-router-dom": "^7.18.4",
     "rxjs": "^7.8.1",
     "svelte": "^4.2.20",
     "vue": "^3.5.43",

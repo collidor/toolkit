@@ -1,10 +1,9 @@
 import React from "react";
+import { Link, NavLink } from "react-router-dom";
 
-export type NavTab = "demo" | "architecture" | "docs";
+export type NavTab = "docs" | "demo" | "architecture";
 
 interface HeaderProps {
-  activeTab: NavTab;
-  onTabChange: (tab: NavTab) => void;
   isAngularConnected: boolean;
   isSolidConnected: boolean;
   theme: "dark" | "light";
@@ -12,8 +11,6 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({
-  activeTab,
-  onTabChange,
   isAngularConnected,
   isSolidConnected,
   theme,
@@ -23,8 +20,8 @@ export const Header: React.FC<HeaderProps> = ({
     <header className="border-b border-white/10 bg-slate-950/80 backdrop-blur-md sticky top-0 z-40 px-4 lg:px-8 py-3">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
         {/* Brand */}
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-rose-600 via-rose-500 to-amber-400 p-[2px] shadow-lg shadow-rose-900/20">
+        <Link to="/docs" className="flex items-center gap-3 group">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-rose-600 via-rose-500 to-amber-400 p-[2px] shadow-lg shadow-rose-900/20 group-hover:scale-105 transition-transform">
             <div className="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center font-black text-rose-400 text-lg">
               C
             </div>
@@ -35,47 +32,58 @@ export const Header: React.FC<HeaderProps> = ({
                 Collidor Toolkit
               </h1>
               <span className="px-2 py-0.5 text-[10px] font-bold rounded-full bg-rose-500/20 text-rose-400 border border-rose-500/30">
-                v0.2.3
+                v0.3.1
               </span>
             </div>
             <p className="text-xs text-slate-400">
               Cross-Framework IPC & Architecture Showcase
             </p>
           </div>
-        </div>
+        </Link>
 
-        {/* Navigation Tabs */}
+        {/* Navigation Tabs — Documentation FIRST, Demo SECOND */}
         <nav className="flex items-center gap-1 bg-slate-900/90 border border-white/10 p-1 rounded-xl">
-          <button
-            onClick={() => onTabChange("demo")}
-            className={`px-4 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-              activeTab === "demo"
-                ? "bg-rose-500 text-white shadow-md shadow-rose-500/20"
-                : "text-slate-400 hover:text-white hover:bg-white/5"
-            }`}
+          <NavLink
+            to="/docs"
+            className={({ isActive }) =>
+              `px-4 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
+                isActive
+                  ? "bg-rose-500 text-white shadow-md shadow-rose-500/20 font-bold"
+                  : "text-slate-400 hover:text-white hover:bg-white/5"
+              }`
+            }
           >
-            ⚡ Pokédex Demo
-          </button>
-          <button
-            onClick={() => onTabChange("architecture")}
-            className={`px-4 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-              activeTab === "architecture"
-                ? "bg-rose-500 text-white shadow-md shadow-rose-500/20"
-                : "text-slate-400 hover:text-white hover:bg-white/5"
-            }`}
+            <span>📚</span>
+            <span>Documentation</span>
+          </NavLink>
+
+          <NavLink
+            to="/demo"
+            className={({ isActive }) =>
+              `px-4 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
+                isActive
+                  ? "bg-rose-500 text-white shadow-md shadow-rose-500/20 font-bold"
+                  : "text-slate-400 hover:text-white hover:bg-white/5"
+              }`
+            }
           >
-            🧩 Architecture & IPC
-          </button>
-          <button
-            onClick={() => onTabChange("docs")}
-            className={`px-4 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-              activeTab === "docs"
-                ? "bg-rose-500 text-white shadow-md shadow-rose-500/20"
-                : "text-slate-400 hover:text-white hover:bg-white/5"
-            }`}
+            <span>⚡</span>
+            <span>Pokédex Demo</span>
+          </NavLink>
+
+          <NavLink
+            to="/architecture"
+            className={({ isActive }) =>
+              `px-4 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
+                isActive
+                  ? "bg-rose-500 text-white shadow-md shadow-rose-500/20 font-bold"
+                  : "text-slate-400 hover:text-white hover:bg-white/5"
+              }`
+            }
           >
-            📚 Documentation
-          </button>
+            <span>🧩</span>
+            <span>Architecture & IPC</span>
+          </NavLink>
         </nav>
 
         {/* Right Section: Status Indicators & Always-Visible Theme Switch */}

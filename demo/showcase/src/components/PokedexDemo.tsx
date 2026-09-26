@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import { busService } from "../services/busService";
 import { mountVueCatalog } from "../widgets/vue/mountVueCatalog";
 import { mountSvelteInspector } from "../widgets/svelte/mountSvelteInspector";
@@ -122,6 +123,23 @@ export const PokedexDemo: React.FC<PokedexDemoProps> = ({
 
   return (
     <div className="max-w-7xl mx-auto py-4 space-y-4">
+      {/* Top Banner with Doc Link */}
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-2 px-4 py-2.5 rounded-xl bg-slate-900/60 border border-white/5 text-xs text-slate-400">
+        <div className="flex items-center gap-2">
+          <span>💡</span>
+          <span>
+            Clicking any Pokémon dispatches typed events across React, Vue, Svelte, Angular, and Solid.js.
+          </span>
+        </div>
+        <Link
+          to="/docs"
+          className="text-rose-400 hover:text-rose-300 font-semibold flex items-center gap-1 transition shrink-0"
+        >
+          <span>Explore Toolkit Documentation & Recipes</span>
+          <span>→</span>
+        </Link>
+      </div>
+
       {/* Top Filter & Search Controls */}
       <div className="glass-panel p-4 flex flex-col md:flex-row items-center justify-between gap-4">
         {/* Search input */}

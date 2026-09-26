@@ -12,6 +12,7 @@ import { EventBus } from "@collidor/event";
 import { z } from "zod";
 import { Subject } from "rxjs";
 import { filter, map, debounceTime } from "rxjs/operators";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { CodeBlock } from "./CodeBlock";
 
 export interface CodeExample {
@@ -34,8 +35,9 @@ export interface DocSection {
 }
 
 export const DocViewer: React.FC = () => {
-  const [activeSectionId, setActiveSectionId] = useState("result");
-  const [activeExampleIndex, setActiveExampleIndex] = useState(0);
+  const { sectionId, exampleId } = useParams<{ sectionId?: string; exampleId?: string }>();
+  const navigate = useNavigate();
+
   const [exampleOutputs, setExampleOutputs] = useState<Record<string, string>>({});
   const [searchQuery, setSearchQuery] = useState("");
   const [isApiTableExpanded, setIsApiTableExpanded] = useState(true);
@@ -43,14 +45,6 @@ export const DocViewer: React.FC = () => {
 
   const setOutput = (exampleId: string, output: string) => {
     setExampleOutputs((prev) => ({ ...prev, [exampleId]: output }));
-  };
-
-  const copyHeadingLink = (anchorId: string) => {
-    const url = new URL(window.location.href);
-    url.hash = anchorId;
-    navigator.clipboard.writeText(url.toString());
-    setCopiedHeading(anchorId);
-    setTimeout(() => setCopiedHeading(null), 2000);
   };
 
   const sections: DocSection[] = useMemo(
@@ -1019,49 +1013,57 @@ mfeAvailability$.subscribe((status) => {
     []
   );
 
-  // Sync with URL Hash on Mount & Hash Changes
-  useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.replace("#", "");
-      if (!hash) return;
-
-      // Find if hash matches a section id
-      const matchedSection = sections.find((s) => s.id === hash);
-      if (matchedSection) {
-        setActiveSectionId(matchedSection.id);
-        setActiveExampleIndex(0);
-        return;
-      }
-
-      // Find if hash matches an example id
-      for (const sec of sections) {
-        const exIdx = sec.examples.findIndex((e) => e.id === hash);
-        if (exIdx !== -1) {
-          setActiveSectionId(sec.id);
-          setActiveExampleIndex(exIdx);
-          return;
+  // Resolve active section from router URL param, falling back to first section
+  const activeSectionId = useMemo(() => {
+    if (sectionId && sections.some((s) => s.id === sectionId)) {
+      return sectionId;
+    }
+    // Also handle case where someone navigated with just an example id or legacy anchor
+    if (sectionId) {
+      for (const s of sections) {
+        if (s.examples.some((e) => e.id === sectionId)) {
+          return s.id;
         }
       }
-    };
+    }
+    return sections[0].id;
+  }, [sectionId, sections]);
 
-    handleHashChange();
-    window.addEventListener("hashchange", handleHashChange);
-    return () => window.removeEventListener("hashchange", handleHashChange);
-  }, [sections]);
+  // Resolve active example index from router URL param
+  const activeExampleIndex = useMemo(() => {
+    const sec = sections.find((s) => s.id === activeSectionId);
+    if (!sec) return 0;
+    if (exampleId) {
+      const idx = sec.examples.findIndex((e) => e.id === exampleId);
+      if (idx !== -1) return idx;
+    }
+    if (sectionId && sec.examples.some((e) => e.id === sectionId)) {
+      const idx = sec.examples.findIndex((e) => e.id === sectionId);
+      if (idx !== -1) return idx;
+    }
+    return 0;
+  }, [activeSectionId, exampleId, sectionId, sections]);
 
-  // Update hash when switching section or example
+  // Navigate on section change
   const handleSelectSection = (id: string) => {
-    setActiveSectionId(id);
-    setActiveExampleIndex(0);
     const sec = sections.find((s) => s.id === id);
     if (sec && sec.examples[0]) {
-      history.replaceState(null, "", `#${sec.examples[0].id}`);
+      navigate(`/docs/${sec.id}/${sec.examples[0].id}`);
+    } else {
+      navigate(`/docs/${id}`);
     }
   };
 
-  const handleSelectExample = (idx: number, exampleId: string) => {
-    setActiveExampleIndex(idx);
-    history.replaceState(null, "", `#${exampleId}`);
+  // Navigate on example change
+  const handleSelectExample = (_idx: number, exId: string) => {
+    navigate(`/docs/${activeSectionId}/${exId}`);
+  };
+
+  const copyHeadingLink = (anchorId: string) => {
+    const permalink = `${window.location.origin}${window.location.pathname}#/docs/${activeSectionId}/${anchorId}`;
+    navigator.clipboard.writeText(permalink);
+    setCopiedHeading(anchorId);
+    setTimeout(() => setCopiedHeading(null), 2000);
   };
 
   // Search Filter Computation
@@ -1096,6 +1098,29 @@ mfeAvailability$.subscribe((status) => {
 
   return (
     <div className="max-w-7xl mx-auto py-6 space-y-6">
+      {/* Quick Interactive Demo Cross-Link Banner */}
+      <div className="glass-panel p-4 bg-gradient-to-r from-rose-500/10 via-amber-500/10 to-blue-500/10 border border-rose-500/20 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <span className="text-2xl">⚡</span>
+          <div>
+            <h4 className="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              Cross-Framework Pokédex Microfrontend Live Demo
+              <span className="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 font-mono font-bold">Interactive</span>
+            </h4>
+            <p className="text-[11px] text-slate-600 dark:text-slate-400 mt-0.5">
+              Experience these libraries live in action: React host shell, Angular team manager, Vue battle inspector, and Solid arena communicating seamlessly via PortChannel and CommandBus.
+            </p>
+          </div>
+        </div>
+        <Link
+          to="/demo"
+          className="shrink-0 px-4 py-2 rounded-xl bg-gradient-to-r from-rose-600 to-rose-500 hover:from-rose-500 hover:to-rose-400 text-white text-xs font-bold shadow-lg shadow-rose-950/30 transition flex items-center gap-2"
+        >
+          <span>Launch Pokédex Demo</span>
+          <span>→</span>
+        </Link>
+      </div>
+
       {/* Top Header & Search Bar */}
       <div className="glass-panel p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border-l-4 border-rose-500">
         <div>
@@ -1274,6 +1299,7 @@ mfeAvailability$.subscribe((status) => {
               onAction={currentExample.onAction}
               outputLog={exampleOutputs[currentExample.id]}
               anchorId={currentExample.id}
+              permalinkUrl={`${window.location.origin}${window.location.pathname}#/docs/${currentSection.id}/${currentExample.id}`}
             />
           </div>
 

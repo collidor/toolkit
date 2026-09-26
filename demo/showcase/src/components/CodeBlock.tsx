@@ -10,6 +10,7 @@ interface CodeBlockProps {
   onAction?: () => void;
   outputLog?: string | null;
   anchorId?: string;
+  permalinkUrl?: string;
 }
 
 export const CodeBlock: React.FC<CodeBlockProps> = ({
@@ -20,6 +21,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
   onAction,
   outputLog,
   anchorId,
+  permalinkUrl,
 }) => {
   const [copied, setCopied] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
@@ -41,6 +43,12 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
   };
 
   const handleCopyLink = () => {
+    if (permalinkUrl) {
+      navigator.clipboard.writeText(permalinkUrl);
+      setCopiedLink(true);
+      setTimeout(() => setCopiedLink(false), 2000);
+      return;
+    }
     if (!anchorId) return;
     const url = new URL(window.location.href);
     url.hash = anchorId;

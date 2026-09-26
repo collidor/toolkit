@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Header, NavTab } from "./components/Header";
+import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Header } from "./components/Header";
 import { PokedexDemo } from "./components/PokedexDemo";
 import { ArchitectureView } from "./components/ArchitectureView";
 import { DocViewer } from "./components/DocViewer";
@@ -8,7 +9,6 @@ import { busService } from "./services/busService";
 import { ThemeChangedEvent } from "@demo/shared";
 
 export const App: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<NavTab>("demo");
   const [isAngularConnected, setIsAngularConnected] = useState(false);
   const [isSolidConnected, setIsSolidConnected] = useState(false);
 
@@ -58,32 +58,41 @@ export const App: React.FC = () => {
   }, [isAngularConnected, isSolidConnected, theme]);
 
   return (
-    <div className="min-h-screen flex flex-col pb-14 transition-colors duration-200">
-      {/* Top Header */}
-      <Header
-        activeTab={activeTab}
-        onTabChange={setActiveTab}
-        isAngularConnected={isAngularConnected}
-        isSolidConnected={isSolidConnected}
-        theme={theme}
-        onToggleTheme={toggleTheme}
-      />
+    <HashRouter>
+      <div className="min-h-screen flex flex-col pb-14 transition-colors duration-200">
+        {/* Top Header */}
+        <Header
+          isAngularConnected={isAngularConnected}
+          isSolidConnected={isSolidConnected}
+          theme={theme}
+          onToggleTheme={toggleTheme}
+        />
 
-      {/* Main View Area */}
-      <main className="flex-1 px-4 lg:px-8">
-        {activeTab === "demo" && (
-          <PokedexDemo
-            onAngularConnectedChange={setIsAngularConnected}
-            onSolidConnectedChange={setIsSolidConnected}
-          />
-        )}
-        {activeTab === "architecture" && <ArchitectureView />}
-        {activeTab === "docs" && <DocViewer />}
-      </main>
+        {/* Main View Area with Documentation as Entry Point */}
+        <main className="flex-1 px-4 lg:px-8">
+          <Routes>
+            <Route path="/" element={<Navigate to="/docs" replace />} />
+            <Route path="/docs" element={<DocViewer />} />
+            <Route path="/docs/:sectionId" element={<DocViewer />} />
+            <Route path="/docs/:sectionId/:exampleId" element={<DocViewer />} />
+            <Route
+              path="/demo"
+              element={
+                <PokedexDemo
+                  onAngularConnectedChange={setIsAngularConnected}
+                  onSolidConnectedChange={setIsSolidConnected}
+                />
+              }
+            />
+            <Route path="/architecture" element={<ArchitectureView />} />
+            <Route path="*" element={<Navigate to="/docs" replace />} />
+          </Routes>
+        </main>
 
-      {/* Collidor DevTools Event Monitor Dock */}
-      <DevToolsDock />
-    </div>
+        {/* Collidor DevTools Event Monitor Dock */}
+        <DevToolsDock />
+      </div>
+    </HashRouter>
   );
 };
 export default App;

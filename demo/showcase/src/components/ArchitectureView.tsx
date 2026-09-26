@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const ArchitectureView: React.FC = () => {
   return (
@@ -165,6 +166,30 @@ export const ArchitectureView: React.FC = () => {
               </tr>
             </tbody>
           </table>
+        </div>
+      </div>
+
+      {/* Navigation Quick Links */}
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-6 glass-panel border border-white/10 rounded-2xl">
+        <div>
+          <h4 className="text-sm font-bold text-white">Ready to inspect the code or test in the browser?</h4>
+          <p className="text-xs text-slate-400 mt-0.5">Explore the comprehensive API documentation or try the live interactive microfrontends.</p>
+        </div>
+        <div className="flex items-center gap-3 shrink-0">
+          <Link
+            to="/docs"
+            className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold border border-white/10 transition flex items-center gap-2"
+          >
+            <span>📚</span>
+            <span>View Documentation</span>
+          </Link>
+          <Link
+            to="/demo"
+            className="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold shadow-md shadow-rose-950/40 transition flex items-center gap-2"
+          >
+            <span>⚡</span>
+            <span>Launch Pokédex Demo</span>
+          </Link>
         </div>
       </div>
     </div>
