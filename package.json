@@ -84,13 +84,13 @@
         "typescript": "5.9.2"
     },
     "dependencies": {
-        "@collidor/command": "^7.1.1",
-        "@collidor/event": "^4.4.0",
+        "@collidor/command": "^7.2.0",
+        "@collidor/event": "^4.5.0",
         "@collidor/injector": "^2.4.20",
         "@collidor/observable-command": "^1.0.5",
         "@collidor/observable-event": "^1.0.5",
         "@collidor/result": "^1.0.5",
-        "@collidor/schema-command": "^1.0.4"
+        "@collidor/schema-command": "^1.0.5"
     },
     "engines": {
         "node": ">=24.0.0"

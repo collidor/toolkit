@@ -1,9 +1,10 @@
 {
   "version": "5",
   "specifiers": {
-    "jsr:@collidor/command@^7.1.0": "7.1.1",
-    "jsr:@collidor/command@^7.1.1": "7.1.1",
-    "jsr:@collidor/event@^4.4.0": "4.4.0",
+    "jsr:@collidor/command@^7.1.0": "7.2.1",
+    "jsr:@collidor/command@^7.2.0": "7.2.1",
+    "jsr:@collidor/event@^4.4.0": "4.5.0",
+    "jsr:@collidor/event@^4.5.0": "4.5.0",
     "jsr:@collidor/injector@^2.4.20": "2.4.20",
     "jsr:@collidor/observable-command@^1.0.5": "1.0.5",
     "jsr:@collidor/observable-event@^1.0.5": "1.0.5",
@@ -26,14 +27,14 @@
     "npm:tsup@8.5.0": "8.5.0_typescript@5.8.3_esbuild@0.25.5"
   },
   "jsr": {
-    "@collidor/command@7.1.1": {
-      "integrity": "bc3b929efd9c36983bec09d29082851d2f44f2b8691e85660da55affea6aa2fb",
+    "@collidor/command@7.2.1": {
+      "integrity": "8396e0b0dd40e94a791ce2e5be370a574b30e1d72611d8bb2889f41d2fa7005a",
       "dependencies": [
-        "jsr:@collidor/event"
+        "jsr:@collidor/event@^4.5.0"
       ]
     },
-    "@collidor/event@4.4.0": {
-      "integrity": "f2269c2d53c3b5a2b2c8fe662cd30c4aab14e6a638832cafc2f0d02e55481061"
+    "@collidor/event@4.5.0": {
+      "integrity": "7740d0614d4fac4592e93379238be4484bb6596ab86102845ffc45232bda52d5"
     },
     "@collidor/injector@2.4.20": {
       "integrity": "67ed8461d22d14a735ae5110f06f4c570900c9f8af7893615e832a766a843c72"
@@ -47,7 +48,7 @@
     "@collidor/observable-event@1.0.5": {
       "integrity": "34d6cafd98e287e74f9bf37ff7b6d50f014be8d03a997b3c78913876e46c80f7",
       "dependencies": [
-        "jsr:@collidor/event"
+        "jsr:@collidor/event@^4.4.0"
       ]
     },
     "@collidor/result@1.0.5": {
@@ -887,8 +888,8 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@collidor/command@^7.1.1",
-      "jsr:@collidor/event@^4.4.0",
+      "jsr:@collidor/command@^7.2.0",
+      "jsr:@collidor/event@^4.5.0",
       "jsr:@collidor/injector@^2.4.20",
       "jsr:@collidor/observable-command@^1.0.5",
       "jsr:@collidor/observable-event@^1.0.5",
@@ -899,13 +900,13 @@
     ],
     "packageJson": {
       "dependencies": [
-        "npm:@collidor/command@^7.1.1",
-        "npm:@collidor/event@^4.4.0",
+        "npm:@collidor/command@^7.2.0",
+        "npm:@collidor/event@^4.5.0",
         "npm:@collidor/injector@^2.4.20",
         "npm:@collidor/observable-command@^1.0.5",
         "npm:@collidor/observable-event@^1.0.5",
         "npm:@collidor/result@^1.0.5",
-        "npm:@collidor/schema-command@^1.0.4",
+        "npm:@collidor/schema-command@^1.0.5",
         "npm:@semantic-release/changelog@^6.0.3",
         "npm:@semantic-release/exec@^6.0.3",
         "npm:@semantic-release/git@^10.0.1",
