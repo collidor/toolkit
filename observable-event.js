@@ -1,0 +1,1 @@
+export*from"@collidor/observable-event";//# sourceMappingURL=observable-event.js.map

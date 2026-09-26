@@ -1,0 +1,1 @@
+export*from"@collidor/injector";//# sourceMappingURL=injector.js.map

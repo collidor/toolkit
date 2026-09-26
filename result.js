@@ -1,0 +1,1 @@
+export*from"@collidor/result";//# sourceMappingURL=result.js.map

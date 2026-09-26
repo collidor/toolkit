@@ -1,0 +1,1 @@
+export*from"@collidor/schema-command";//# sourceMappingURL=schema-command.js.map

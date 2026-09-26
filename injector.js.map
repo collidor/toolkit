@@ -1,0 +1,1 @@
+{"version":3,"sources":["c:\\Users\\alyka\\projects\\collidor\\toolkit\\dist\\injector.js"],"names":[],"mappings":"AAAA,WAAW,oBAAqB","sourcesContent":["export*from\"@collidor/injector\";\n"]}

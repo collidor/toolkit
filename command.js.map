@@ -1,0 +1,1 @@
+{"version":3,"sources":["c:\\Users\\alyka\\projects\\collidor\\toolkit\\dist\\command.js"],"names":[],"mappings":"AAAA,WAAW,mBAAoB","sourcesContent":["export*from\"@collidor/command\";\n"]}

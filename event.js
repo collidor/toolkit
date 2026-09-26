@@ -1,0 +1,1 @@
+export*from"@collidor/event";//# sourceMappingURL=event.js.map
