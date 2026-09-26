@@ -1,0 +1,1 @@
+export*from"@collidor/observable-command";//# sourceMappingURL=observable-command.js.map
