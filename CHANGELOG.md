@@ -1,3 +1,10 @@
+# [0.4.0](https://github.com/collidor/toolkit/compare/v0.3.1...v0.4.0) (2026-09-26)
+
+
+### Features
+
+* **showcase:** add hash-router with documentation as entry point and deep-linking ([063f55d](https://github.com/collidor/toolkit/commit/063f55dbd3599898f38e9be9b51e6a163dcf4266))
+
 ## [0.3.1](https://github.com/collidor/toolkit/compare/v0.3.0...v0.3.1) (2026-09-26)
 
 
