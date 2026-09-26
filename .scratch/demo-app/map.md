@@ -25,6 +25,7 @@ A production-ready documentation and multi-framework Pokédex demonstration appl
 - [09 - Setup GitHub Pages Multi-App Build and Automated Deployment](issues/09-setup-github-pages-workflow.md): Added unified monorepo build script (`npm run build:demo`) across Angular, Solid, and Showcase, configured Tailwind CSS stylesheets, and created automated GitHub Pages deployment workflow (`.github/workflows/deploy-pages.yml`).
 - [10 - Search and Paginate All Original 151 Pokémon](issues/10-search-pagination-gen1.md): Indexed all 151 original Pokémon (IDs 1-151) with canonical names and types, expanded PokedexClient with pagination and offline synthesis fallback, and added responsive Vue 3 pagination controls.
 - [11 - Documentation Expansion, Result Capabilities, and Syntax-Highlighted Code Formatter](issues/11-documentation-result-syntax-highlighting.md): Integrated Prism.js syntax highlighting with custom dark theme, expanded Result documentation with 5 interactive multi-scenario examples (pipe, pipeAsync, chain, map, from, unwrap, combine, try), and added tabbed navigation across modules.
+- [12 - Massive Documentation Expansion, Usability, Heading Deep-Links, Collapsible Navigation, and Advanced Cross-Library Observable + Schema Patterns](issues/12-massive-doc-expansion-observables-schemas.md): Expanded documentation to 150% coverage across all 7 libraries plus combined Observable+Schema recipes, added URL hash deep-links, permalink copying, collapsible accordion sections, live code runners, and full-text search.
 
 ## Not yet specified
 

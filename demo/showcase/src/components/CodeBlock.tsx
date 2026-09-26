@@ -9,6 +9,7 @@ interface CodeBlockProps {
   actionLabel?: string;
   onAction?: () => void;
   outputLog?: string | null;
+  anchorId?: string;
 }
 
 export const CodeBlock: React.FC<CodeBlockProps> = ({
@@ -18,8 +19,10 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
   actionLabel,
   onAction,
   outputLog,
+  anchorId,
 }) => {
   const [copied, setCopied] = useState(false);
+  const [copiedLink, setCopiedLink] = useState(false);
   const [isRunning, setIsRunning] = useState(false);
 
   const highlightedHtml = useMemo(() => {
@@ -37,6 +40,15 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const handleCopyLink = () => {
+    if (!anchorId) return;
+    const url = new URL(window.location.href);
+    url.hash = anchorId;
+    navigator.clipboard.writeText(url.toString());
+    setCopiedLink(true);
+    setTimeout(() => setCopiedLink(false), 2000);
+  };
+
   const handleRun = async () => {
     if (!onAction) return;
     setIsRunning(true);
@@ -48,17 +60,26 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
   };
 
   return (
-    <div className="code-block-container rounded-xl border border-slate-800 bg-[#0d1117] text-slate-100 overflow-hidden shadow-xl mb-4 transition-colors">
+    <div id={anchorId} className="code-block-container rounded-xl border border-slate-800 bg-[#0d1117] text-slate-100 overflow-hidden shadow-xl mb-4 transition-colors scroll-mt-24">
       {/* Code Block Toolbar */}
-      <div className="code-block-toolbar flex items-center justify-between px-4 py-2.5 border-b border-slate-800 bg-[#161b22] select-none transition-colors">
-        <div className="flex items-center gap-2">
-          <span className="w-3 h-3 rounded-full bg-rose-500/90 inline-block"></span>
-          <span className="w-3 h-3 rounded-full bg-amber-500/90 inline-block"></span>
-          <span className="w-3 h-3 rounded-full bg-emerald-500/90 inline-block"></span>
-          <span className="code-block-title text-xs font-mono font-semibold text-slate-200 ml-2">{title}</span>
-          <span className="code-block-lang text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-slate-800/90 text-slate-300 font-bold border border-slate-700/60">
+      <div className="code-block-toolbar flex items-center justify-between px-4 py-2.5 border-b border-slate-800 bg-[#161b22] select-none transition-colors flex-wrap gap-2">
+        <div className="flex items-center gap-2 min-w-0">
+          <span className="w-3 h-3 rounded-full bg-rose-500/90 inline-block shrink-0"></span>
+          <span className="w-3 h-3 rounded-full bg-amber-500/90 inline-block shrink-0"></span>
+          <span className="w-3 h-3 rounded-full bg-emerald-500/90 inline-block shrink-0"></span>
+          <span className="code-block-title text-xs font-mono font-semibold text-slate-200 ml-2 truncate">{title}</span>
+          <span className="code-block-lang text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-slate-800/90 text-slate-300 font-bold border border-slate-700/60 shrink-0">
             {language}
           </span>
+          {anchorId && (
+            <button
+              onClick={handleCopyLink}
+              title="Copy direct permalink"
+              className="text-slate-400 hover:text-white px-1.5 py-0.5 rounded text-[10px] hover:bg-slate-800 transition font-mono shrink-0 flex items-center gap-1"
+            >
+              <span>{copiedLink ? "✓ Copied" : "#"}</span>
+            </button>
+          )}
         </div>
 
         <div className="flex items-center gap-2">
