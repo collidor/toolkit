@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import { busService } from "../services/busService";
 import {
   FetchPokemonDetailCommand,
-  FetchPokemonListCommand,
   AddTeamMemberSchemaCommand,
   DeployToBattleCommand,
-  PokemonDetail,
   PokemonSelectedEvent,
   SEED_POKEMON_LIST,
   TelemetryCategory,

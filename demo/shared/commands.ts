@@ -2,9 +2,8 @@ import { Command } from "@collidor/command";
 import { schemaCommand } from "@collidor/schema-command";
 import { Result } from "@collidor/result";
 import { z } from "zod";
-import {
-  AddTeamMemberInput,
-  AddTeamMemberInputSchema,
+import { AddTeamMemberInputSchema } from "./schemas";
+import type {
   BattleAction,
   BattleRoundLog,
   BattleState,

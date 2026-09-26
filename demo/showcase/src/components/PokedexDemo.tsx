@@ -5,11 +5,8 @@ import { mountSvelteInspector } from "../widgets/svelte/mountSvelteInspector";
 import {
   FilterChangedEvent,
   FocusViewEvent,
-  PokemonDetail,
-  PokemonSelectedEvent,
   PokemonType,
   PokemonTypeSchema,
-  SEED_POKEMON_LIST,
 } from "@demo/shared";
 
 interface PokedexDemoProps {
@@ -23,7 +20,6 @@ export const PokedexDemo: React.FC<PokedexDemoProps> = ({
 }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedType, setSelectedType] = useState<PokemonType | undefined>();
-  const [selectedPokemon, setSelectedPokemon] = useState<PokemonDetail>(SEED_POKEMON_LIST[3]); // Pikachu default
   const [rightPanelTab, setRightPanelTab] = useState<"angular" | "solid">("angular");
 
   const vueContainerRef = useRef<HTMLDivElement>(null);
@@ -33,12 +29,6 @@ export const PokedexDemo: React.FC<PokedexDemoProps> = ({
 
   // Subscribe to selection and focus events from anywhere in the system
   useEffect(() => {
-    const unsubSelect = busService.eventBus.on(PokemonSelectedEvent, (pokemon) => {
-      // Find full detail from seed list or fallback
-      const full = SEED_POKEMON_LIST.find((p) => p.id === pokemon.id) ?? (pokemon as PokemonDetail);
-      setSelectedPokemon(full);
-    });
-
     const unsubFocus = busService.eventBus.on(FocusViewEvent, (event) => {
       if (event.tab) {
         setRightPanelTab(event.tab);
@@ -46,7 +36,6 @@ export const PokedexDemo: React.FC<PokedexDemoProps> = ({
     });
 
     return () => {
-      unsubSelect();
       unsubFocus();
     };
   }, []);

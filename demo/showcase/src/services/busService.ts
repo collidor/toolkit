@@ -13,7 +13,6 @@ import {
   FetchPokemonListCommand,
   FocusViewEvent,
   GetTeamCommand,
-  PokemonDetail,
   PokemonInspectedEvent,
   PokemonSelectedEvent,
   pokedexClient,

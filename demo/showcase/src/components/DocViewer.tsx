@@ -7,8 +7,6 @@ import {
 } from "@demo/shared";
 import { Result } from "@collidor/result";
 import { EventBus } from "@collidor/event";
-import { Command, CommandBus, PortChannelPlugin } from "@collidor/command";
-import { Injector } from "@collidor/injector";
 import { CodeBlock } from "./CodeBlock";
 
 interface CodeExample {

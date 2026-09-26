@@ -56,5 +56,9 @@
                 "no-console"
             ]
         }
-    }
+    },
+    "exclude": [
+        "dist",
+        "demo"
+    ]
 }

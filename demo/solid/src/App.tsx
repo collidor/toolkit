@@ -1,14 +1,15 @@
 import { Component, createSignal, createEffect, onCleanup, For, Show } from "solid-js";
 import { battleEngine } from "./services/battleEngine";
 import {
-  BattleRoundLog,
+  PokemonSelectedEvent,
+  SEED_POKEMON_LIST,
+  ThemeChangedEvent,
+} from "@demo/shared";
+import type {
   BattleState,
   PokemonDetail,
   PokemonMove,
-  PokemonSelectedEvent,
-  SEED_POKEMON_LIST,
   Team,
-  ThemeChangedEvent,
 } from "@demo/shared";
 
 export const App: Component = () => {
