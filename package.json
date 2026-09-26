@@ -64,7 +64,11 @@
         "test:coverage": "deno test --coverage && deno coverage --lcov --output=./coverage/lcov.info && deno coverage --html",
         "publish:jsr": "deno run --allow-all ./publishJsr.ts",
         "sync:jsr": "deno run --allow-read --allow-write ./sync.ts",
-        "release": "semantic-release"
+        "release": "semantic-release",
+        "build:demo:angular": "npm --prefix demo/angular run build",
+        "build:demo:solid": "npm --prefix demo/solid run build",
+        "build:demo:showcase": "npm --prefix demo/showcase run build",
+        "build:demo": "npm run build:demo:angular && npm run build:demo:solid && npm run build:demo:showcase"
     },
     "keywords": [
         "command",
