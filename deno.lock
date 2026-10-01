@@ -2,9 +2,10 @@
   "version": "5",
   "specifiers": {
     "jsr:@collidor/command@^7.1.0": "7.2.1",
-    "jsr:@collidor/command@^7.2.0": "7.2.1",
-    "jsr:@collidor/event@^4.4.0": "4.5.0",
-    "jsr:@collidor/event@^4.5.0": "4.5.0",
+    "jsr:@collidor/command@^7.2.1": "7.2.1",
+    "jsr:@collidor/event@^4.4.0": "4.7.0",
+    "jsr:@collidor/event@^4.5.0": "4.7.0",
+    "jsr:@collidor/event@^4.7.0": "4.7.0",
     "jsr:@collidor/injector@^2.4.20": "2.4.20",
     "jsr:@collidor/observable-command@^1.0.5": "1.0.5",
     "jsr:@collidor/observable-event@^1.0.5": "1.0.5",
@@ -33,8 +34,8 @@
         "jsr:@collidor/event@^4.5.0"
       ]
     },
-    "@collidor/event@4.5.0": {
-      "integrity": "7740d0614d4fac4592e93379238be4484bb6596ab86102845ffc45232bda52d5"
+    "@collidor/event@4.7.0": {
+      "integrity": "5ee6dad931d8fe6f70b14998ef5eae3153590dd632997137049888cc23bd2a30"
     },
     "@collidor/injector@2.4.20": {
       "integrity": "67ed8461d22d14a735ae5110f06f4c570900c9f8af7893615e832a766a843c72"
@@ -888,8 +889,8 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@collidor/command@^7.2.0",
-      "jsr:@collidor/event@^4.5.0",
+      "jsr:@collidor/command@^7.2.1",
+      "jsr:@collidor/event@^4.7.0",
       "jsr:@collidor/injector@^2.4.20",
       "jsr:@collidor/observable-command@^1.0.5",
       "jsr:@collidor/observable-event@^1.0.5",
@@ -900,8 +901,8 @@
     ],
     "packageJson": {
       "dependencies": [
-        "npm:@collidor/command@^7.2.0",
-        "npm:@collidor/event@^4.5.0",
+        "npm:@collidor/command@^7.2.1",
+        "npm:@collidor/event@^4.7.0",
         "npm:@collidor/injector@^2.4.20",
         "npm:@collidor/observable-command@^1.0.5",
         "npm:@collidor/observable-event@^1.0.5",
