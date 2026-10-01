@@ -1,3 +1,10 @@
+## [0.4.1](https://github.com/collidor/toolkit/compare/v0.4.0...v0.4.1) (2026-10-01)
+
+
+### Bug Fixes
+
+* **deps:** update @collidor/command to ^7.2.1 and @collidor/event to ^4.7.0 ([796d3db](https://github.com/collidor/toolkit/commit/796d3db488a24466413418ccd55d4926012d8759))
+
 # [0.4.0](https://github.com/collidor/toolkit/compare/v0.3.1...v0.4.0) (2026-09-26)
 
 
