@@ -9,6 +9,7 @@ export default defineConfig({
     "./src/observable-event.ts",
     "./src/result.ts",
     "./src/schema-command.ts",
+    "./src/struct.ts",
   ],
   splitting: false,
   sourcemap: true,

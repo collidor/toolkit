@@ -9,7 +9,8 @@
         "./observable-command": "./src/observable-command.ts",
         "./observable-event": "./src/observable-event.ts",
         "./result": "./src/result.ts",
-        "./schema-command": "./src/schema-command.ts"
+        "./schema-command": "./src/schema-command.ts",
+        "./struct": "./src/struct.ts"
     },
     "compilerOptions": {
         "lib": [
@@ -44,7 +45,8 @@
         "@collidor/schema-command": "jsr:@collidor/schema-command@^1.1.0",
         "@collidor/result": "jsr:@collidor/result@^1.0.5",
         "@collidor/observable-command": "jsr:@collidor/observable-command@^1.1.0",
-        "@collidor/observable-event": "jsr:@collidor/observable-event@^1.1.0"
+        "@collidor/observable-event": "jsr:@collidor/observable-event@^1.1.0",
+        "@collidor/struct": "jsr:@collidor/struct@^0.1.0"
     },
     "lint": {
         "rules": {

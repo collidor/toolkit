@@ -44,4 +44,12 @@ Deno.test("collidor toolkit modular entrypoints", async (t) => {
     assertExists(schemaCommand.schemaCommand);
     assertExists(schemaCommand.createSchemaCommand);
   });
+
+  await t.step("should export complete struct module API", async () => {
+    const struct = await import("./struct.ts");
+    assertExists(struct.s);
+    assertExists(struct.struct);
+    assertExists(struct.fromZod);
+    assertExists(struct.toZod);
+  });
 });

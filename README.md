@@ -35,6 +35,9 @@ import { Result } from "@collidor/toolkit/result";
 
 // 6. Schema Commands (Zod)
 import { SchemaCommand, createSchemaCommand } from "@collidor/toolkit/schema-command";
+
+// 7. Struct Definitions & Bridges
+import { s, struct, fromZod, toZod } from "@collidor/toolkit/struct";
 ```
 
 ## Available Subpath Modules
@@ -48,3 +51,4 @@ import { SchemaCommand, createSchemaCommand } from "@collidor/toolkit/schema-com
 | `@collidor/toolkit/observable-event` | `ObservableEventBus` (RxJS-powered Event Bus) |
 | `@collidor/toolkit/result` | `Result` monad (`Ok`, `Err`, unwrapping) |
 | `@collidor/toolkit/schema-command` | `SchemaCommand`, `schemaCommand`, `createSchemaCommand` |
+| `@collidor/toolkit/struct` | `s`, `struct`, schema types, AST engine, DDL generator, bridges (`toZod`, `toJSONSchema`) |

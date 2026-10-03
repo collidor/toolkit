@@ -46,6 +46,11 @@
             "types": "./dist/schema-command.d.ts",
             "import": "./dist/schema-command.js",
             "require": "./dist/schema-command.cjs"
+        },
+        "./struct": {
+            "types": "./dist/struct.d.ts",
+            "import": "./dist/struct.js",
+            "require": "./dist/struct.cjs"
         }
     },
     "scripts": {
@@ -86,7 +91,8 @@
         "@collidor/observable-command": "^1.1.0",
         "@collidor/observable-event": "^1.1.0",
         "@collidor/result": "^1.0.5",
-        "@collidor/schema-command": "^1.1.0"
+        "@collidor/schema-command": "^1.1.0",
+        "@collidor/struct": "^0.1.0"
     },
     "engines": {
         "node": ">=24.0.0"
