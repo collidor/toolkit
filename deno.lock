@@ -2,10 +2,11 @@
   "version": "5",
   "specifiers": {
     "jsr:@collidor/command@^7.2.1": "7.3.0",
+    "jsr:@collidor/command@^7.3.0": "7.3.0",
     "jsr:@collidor/event@^4.7.0": "4.7.0",
     "jsr:@collidor/injector@^2.4.20": "2.4.20",
-    "jsr:@collidor/observable-command@^1.0.5": "1.1.0",
-    "jsr:@collidor/observable-event@^1.0.5": "1.1.0",
+    "jsr:@collidor/observable-command@^1.1.0": "1.1.0",
+    "jsr:@collidor/observable-event@^1.1.0": "1.1.0",
     "jsr:@collidor/result@^1.0.5": "1.0.5",
     "jsr:@collidor/schema-command@^1.1.0": "1.1.0",
     "jsr:@std/assert@*": "1.0.12",
@@ -40,7 +41,7 @@
     "@collidor/observable-command@1.1.0": {
       "integrity": "b99482d7d04a6fce1cf9876005f4e1e007fa06ae41062ef8bd5dc97dd9cd6de3",
       "dependencies": [
-        "jsr:@collidor/command",
+        "jsr:@collidor/command@^7.2.1",
         "jsr:@collidor/event"
       ]
     },
@@ -56,7 +57,7 @@
     "@collidor/schema-command@1.1.0": {
       "integrity": "6a10d5a98f9944e493fc5892d66c1548d18b2202e8473ed357644607d14f44a1",
       "dependencies": [
-        "jsr:@collidor/command"
+        "jsr:@collidor/command@^7.2.1"
       ]
     },
     "@std/assert@1.0.11": {
@@ -887,11 +888,11 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@collidor/command@^7.2.1",
+      "jsr:@collidor/command@^7.3.0",
       "jsr:@collidor/event@^4.7.0",
       "jsr:@collidor/injector@^2.4.20",
-      "jsr:@collidor/observable-command@^1.0.5",
-      "jsr:@collidor/observable-event@^1.0.5",
+      "jsr:@collidor/observable-command@^1.1.0",
+      "jsr:@collidor/observable-event@^1.1.0",
       "jsr:@collidor/result@^1.0.5",
       "jsr:@collidor/schema-command@^1.1.0",
       "jsr:@std/assert@^1.0.11",
@@ -899,11 +900,11 @@
     ],
     "packageJson": {
       "dependencies": [
-        "npm:@collidor/command@^7.2.1",
+        "npm:@collidor/command@^7.3.0",
         "npm:@collidor/event@^4.7.0",
         "npm:@collidor/injector@^2.4.20",
-        "npm:@collidor/observable-command@^1.0.5",
-        "npm:@collidor/observable-event@^1.0.5",
+        "npm:@collidor/observable-command@^1.1.0",
+        "npm:@collidor/observable-event@^1.1.0",
         "npm:@collidor/result@^1.0.5",
         "npm:@collidor/schema-command@^1.1.0",
         "npm:@semantic-release/changelog@^6.0.3",
