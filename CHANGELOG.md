@@ -1,3 +1,18 @@
+# [1.0.0](https://github.com/collidor/toolkit/compare/v0.4.1...v1.0.0) (2026-10-03)
+
+
+* feat(toolkit)!: remove root entrypoint in favor of dedicated module subpaths ([95165f6](https://github.com/collidor/toolkit/commit/95165f6a3b67cd9ff97e00f78e10f1210683bb8d))
+
+
+### Bug Fixes
+
+* **deps:** update collidor dependencies to latest refs ([7f6a658](https://github.com/collidor/toolkit/commit/7f6a658ca16a5b137fb3335390234e2a0518305f))
+
+
+### BREAKING CHANGES
+
+* The monolithic root entrypoint '@collidor/toolkit' has been removed. Import directly from module subpaths (e.g. '@collidor/toolkit/command', '@collidor/toolkit/event', '@collidor/toolkit/schema-command').
+
 ## [0.4.1](https://github.com/collidor/toolkit/compare/v0.4.0...v0.4.1) (2026-10-01)
 
 

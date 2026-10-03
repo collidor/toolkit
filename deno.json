@@ -1,6 +1,6 @@
 {
     "name": "@collidor/toolkit",
-    "version": "0.4.1",
+    "version": "1.0.0",
     "license": "MIT",
     "exports": {
         "./command": "./src/command.ts",
