@@ -11,15 +11,7 @@
         "provenance": true
     },
     "type": "module",
-    "main": "dist/main.cjs",
-    "module": "dist/main.js",
-    "types": "dist/main.d.ts",
     "exports": {
-        ".": {
-            "types": "./dist/main.d.ts",
-            "import": "./dist/main.js",
-            "require": "./dist/main.cjs"
-        },
         "./command": {
             "types": "./dist/command.d.ts",
             "import": "./dist/command.js",
@@ -94,7 +86,7 @@
         "@collidor/observable-command": "^1.0.5",
         "@collidor/observable-event": "^1.0.5",
         "@collidor/result": "^1.0.5",
-        "@collidor/schema-command": "^1.0.5"
+        "@collidor/schema-command": "^1.1.0"
     },
     "engines": {
         "node": ">=24.0.0"

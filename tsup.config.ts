@@ -2,7 +2,6 @@ import { defineConfig } from "tsup";
 
 export default defineConfig({
   entry: [
-    "./src/main.ts",
     "./src/command.ts",
     "./src/event.ts",
     "./src/injector.ts",
