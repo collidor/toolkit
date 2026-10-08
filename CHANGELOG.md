@@ -1,3 +1,11 @@
+## [1.1.3](https://github.com/collidor/toolkit/compare/v1.1.2...v1.1.3) (2026-10-08)
+
+
+### Bug Fixes
+
+* **demo:** show toolkit version in showcase header ([cf78362](https://github.com/collidor/toolkit/commit/cf783624bcff2b754c01b1c0203870c58dd47d98))
+* **deps:** bump collidor dependencies to latest ([d355157](https://github.com/collidor/toolkit/commit/d35515778ec99daf48a18908d5e731e3c081b1ce))
+
 ## [1.1.2](https://github.com/collidor/toolkit/compare/v1.1.1...v1.1.2) (2026-10-08)
 
 
