@@ -1,100 +1,100 @@
 {
-    "name": "@collidor/toolkit",
-    "version": "1.1.0",
-    "description": "An umbrella package for collidor libraries.",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/collidor/toolkit.git"
+  "name": "@collidor/toolkit",
+  "version": "1.1.0",
+  "description": "An umbrella package for collidor libraries.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/collidor/toolkit.git"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "type": "module",
+  "exports": {
+    "./command": {
+      "types": "./dist/command.d.ts",
+      "import": "./dist/command.js",
+      "require": "./dist/command.cjs"
     },
-    "publishConfig": {
-        "access": "public",
-        "provenance": true
+    "./event": {
+      "types": "./dist/event.d.ts",
+      "import": "./dist/event.js",
+      "require": "./dist/event.cjs"
     },
-    "type": "module",
-    "exports": {
-        "./command": {
-            "types": "./dist/command.d.ts",
-            "import": "./dist/command.js",
-            "require": "./dist/command.cjs"
-        },
-        "./event": {
-            "types": "./dist/event.d.ts",
-            "import": "./dist/event.js",
-            "require": "./dist/event.cjs"
-        },
-        "./injector": {
-            "types": "./dist/injector.d.ts",
-            "import": "./dist/injector.js",
-            "require": "./dist/injector.cjs"
-        },
-        "./observable-command": {
-            "types": "./dist/observable-command.d.ts",
-            "import": "./dist/observable-command.js",
-            "require": "./dist/observable-command.cjs"
-        },
-        "./observable-event": {
-            "types": "./dist/observable-event.d.ts",
-            "import": "./dist/observable-event.js",
-            "require": "./dist/observable-event.cjs"
-        },
-        "./result": {
-            "types": "./dist/result.d.ts",
-            "import": "./dist/result.js",
-            "require": "./dist/result.cjs"
-        },
-        "./schema-command": {
-            "types": "./dist/schema-command.d.ts",
-            "import": "./dist/schema-command.js",
-            "require": "./dist/schema-command.cjs"
-        },
-        "./struct": {
-            "types": "./dist/struct.d.ts",
-            "import": "./dist/struct.js",
-            "require": "./dist/struct.cjs"
-        }
+    "./injector": {
+      "types": "./dist/injector.d.ts",
+      "import": "./dist/injector.js",
+      "require": "./dist/injector.cjs"
     },
-    "scripts": {
-        "build": "tsup",
-        "dev": "tsup --watch",
-        "test": "deno test",
-        "lint": "oxlint",
-        "test:coverage": "deno test --coverage && deno coverage --lcov --output=./coverage/lcov.info && deno coverage --html",
-        "publish:jsr": "deno run --allow-all ./publishJsr.ts",
-        "sync:jsr": "deno run --allow-read --allow-write ./sync.ts",
-        "release": "semantic-release",
-        "build:demo:angular": "npm --prefix demo/angular run build",
-        "build:demo:solid": "npm --prefix demo/solid run build",
-        "build:demo:showcase": "npm --prefix demo/showcase run build",
-        "build:demo": "npm run build:demo:angular && npm run build:demo:solid && npm run build:demo:showcase"
+    "./observable-command": {
+      "types": "./dist/observable-command.d.ts",
+      "import": "./dist/observable-command.js",
+      "require": "./dist/observable-command.cjs"
     },
-    "keywords": [
-        "command",
-        "command bus",
-        "command handler"
-    ],
-    "author": "Alykam Burdzaki <alykam@gmail.com> (https://alykam.com)",
-    "license": "MIT",
-    "devDependencies": {
-        "@semantic-release/changelog": "^6.0.3",
-        "@semantic-release/exec": "^6.0.3",
-        "@semantic-release/git": "^10.0.1",
-        "@swc/core": "^1.13.5",
-        "oxlint": "^1.78.0",
-        "semantic-release": "^24.2.3",
-        "tsup": "8.5.0",
-        "typescript": "5.9.2"
+    "./observable-event": {
+      "types": "./dist/observable-event.d.ts",
+      "import": "./dist/observable-event.js",
+      "require": "./dist/observable-event.cjs"
     },
-    "dependencies": {
-        "@collidor/command": "^7.3.1",
-        "@collidor/event": "^4.7.0",
-        "@collidor/injector": "^2.4.20",
-        "@collidor/observable-command": "^1.1.0",
-        "@collidor/observable-event": "^1.1.0",
-        "@collidor/result": "^1.0.5",
-        "@collidor/schema-command": "^1.1.1",
-        "@collidor/struct": "^0.1.0"
+    "./result": {
+      "types": "./dist/result.d.ts",
+      "import": "./dist/result.js",
+      "require": "./dist/result.cjs"
     },
-    "engines": {
-        "node": ">=24.0.0"
+    "./schema-command": {
+      "types": "./dist/schema-command.d.ts",
+      "import": "./dist/schema-command.js",
+      "require": "./dist/schema-command.cjs"
+    },
+    "./struct": {
+      "types": "./dist/struct.d.ts",
+      "import": "./dist/struct.js",
+      "require": "./dist/struct.cjs"
     }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "deno test",
+    "lint": "oxlint",
+    "test:coverage": "deno test --coverage && deno coverage --lcov --output=./coverage/lcov.info && deno coverage --html",
+    "publish:jsr": "deno run --allow-all ./publishJsr.ts",
+    "sync:jsr": "deno run --allow-read --allow-write ./sync.ts",
+    "release": "semantic-release",
+    "build:demo:angular": "npm --prefix demo/angular run build",
+    "build:demo:solid": "npm --prefix demo/solid run build",
+    "build:demo:showcase": "npm --prefix demo/showcase run build",
+    "build:demo": "npm run build:demo:angular && npm run build:demo:solid && npm run build:demo:showcase"
+  },
+  "keywords": [
+    "command",
+    "command bus",
+    "command handler"
+  ],
+  "author": "Alykam Burdzaki <alykam@gmail.com> (https://alykam.com)",
+  "license": "MIT",
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/exec": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@swc/core": "^1.13.5",
+    "oxlint": "^1.78.0",
+    "semantic-release": "^24.2.3",
+    "tsup": "8.5.0",
+    "typescript": "5.9.2"
+  },
+  "dependencies": {
+    "@collidor/command": "^7.3.2",
+    "@collidor/event": "^4.7.0",
+    "@collidor/injector": "^2.4.20",
+    "@collidor/observable-command": "^1.1.0",
+    "@collidor/observable-event": "^1.1.0",
+    "@collidor/result": "^1.0.5",
+    "@collidor/schema-command": "^1.1.1",
+    "@collidor/struct": "^0.1.0"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  }
 }
