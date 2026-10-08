@@ -32,7 +32,7 @@ export const Header: React.FC<HeaderProps> = ({
                 Collidor Toolkit
               </h1>
               <span className="px-2 py-0.5 text-[10px] font-bold rounded-full bg-rose-500/20 text-rose-400 border border-rose-500/30">
-                v0.3.1
+                v{__TOOLKIT_VERSION__}
               </span>
             </div>
             <p className="text-xs text-slate-400">
