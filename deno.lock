@@ -24,13 +24,11 @@
     "jsr:@std/internal@^1.0.6": "1.0.14",
     "jsr:@std/path@^1.0.8": "1.0.8",
     "jsr:@std/testing@^1.0.9": "1.0.10",
-    "npm:@collidor/command@^7.3.0": "7.3.0_@collidor+event@4.7.0",
     "npm:@collidor/event@^4.7.0": "4.7.0",
     "npm:@collidor/injector@^2.4.20": "2.4.20",
     "npm:@collidor/observable-command@^1.1.0": "1.1.0_@collidor+event@4.7.0_rxjs@7.8.2",
     "npm:@collidor/observable-event@^1.1.0": "1.1.0_rxjs@7.8.2",
     "npm:@collidor/result@^1.0.5": "1.0.5",
-    "npm:@collidor/schema-command@^1.1.0": "1.1.0_zod@4.6.5_@collidor+event@4.7.0",
     "npm:@collidor/struct@0.1": "0.1.0_zod@4.6.5",
     "npm:@semantic-release/changelog@^6.0.3": "6.0.3_semantic-release@24.2.9__typescript@5.9.2_typescript@5.9.2",
     "npm:@semantic-release/exec@^6.0.3": "6.0.3_semantic-release@24.2.9__typescript@5.9.2_typescript@5.9.2",
@@ -203,13 +201,6 @@
     },
     "@collidor/result@1.0.5": {
       "integrity": "sha512-2E7QNoPAd4RSFckOW5Es5R1WrLMNgMYro/dmFiRK8rgX+ebvmVcq/T0Or4v5uUXN3ZDqfOllg2g1G9FKPeEqpQ=="
-    },
-    "@collidor/schema-command@1.1.0_zod@4.6.5_@collidor+event@4.7.0": {
-      "integrity": "sha512-HiInji7vQfry8gH3FuiY1pmpoe5DQ7YyZUldKCTFahMPoNHYPToG1JYzoveDAJ0FqtnTQ8grO81+mCETwO6kSQ==",
-      "dependencies": [
-        "@collidor/command",
-        "zod@4.6.5"
-      ]
     },
     "@collidor/struct@0.1.0_zod@4.6.5": {
       "integrity": "sha512-qEVgqy79qu+CofSaObx+Jc2wvlJ0t2G+GIINCcAjxdpMCcfGojOV3W7IUIvoJX4KdPYNlN6Eo/aT52VPRU2WZw==",
@@ -2583,13 +2574,13 @@
     ],
     "packageJson": {
       "dependencies": [
-        "npm:@collidor/command@^7.3.0",
+        "npm:@collidor/command@^7.3.1",
         "npm:@collidor/event@^4.7.0",
         "npm:@collidor/injector@^2.4.20",
         "npm:@collidor/observable-command@^1.1.0",
         "npm:@collidor/observable-event@^1.1.0",
         "npm:@collidor/result@^1.0.5",
-        "npm:@collidor/schema-command@^1.1.0",
+        "npm:@collidor/schema-command@^1.1.1",
         "npm:@collidor/struct@0.1",
         "npm:@semantic-release/changelog@^6.0.3",
         "npm:@semantic-release/exec@^6.0.3",

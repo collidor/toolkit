@@ -1,5 +1,6 @@
 {
     "name": "@collidor/toolkit",
+    "nodeModulesDir": "none",
     "version": "1.0.0",
     "license": "MIT",
     "exports": {
