@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/collidor/toolkit/compare/v1.1.0...v1.1.1) (2026-10-08)
+
+
+### Bug Fixes
+
+* promise detection ([01a5298](https://github.com/collidor/toolkit/commit/01a5298b9d8f17541183cce27c0b820f182cc75a))
+
 # [1.1.0](https://github.com/collidor/toolkit/compare/v1.0.0...v1.1.0) (2026-10-08)
 
 

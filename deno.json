@@ -1,7 +1,7 @@
 {
     "name": "@collidor/toolkit",
     "nodeModulesDir": "none",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "license": "MIT",
     "exports": {
         "./command": "./src/command.ts",
