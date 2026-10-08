@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/collidor/toolkit/compare/v1.1.1...v1.1.2) (2026-10-08)
+
+
+### Bug Fixes
+
+* struct export types ([25b69fb](https://github.com/collidor/toolkit/commit/25b69fbba544504f29364980ac89cd750adb0569))
+
 ## [1.1.1](https://github.com/collidor/toolkit/compare/v1.1.0...v1.1.1) (2026-10-08)
 
 
