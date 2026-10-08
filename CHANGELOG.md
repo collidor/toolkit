@@ -1,3 +1,16 @@
+# [1.1.0](https://github.com/collidor/toolkit/compare/v1.0.0...v1.1.0) (2026-10-08)
+
+
+### Bug Fixes
+
+* bump command ([b751429](https://github.com/collidor/toolkit/commit/b75142962cf3a1cc207307ffdd7e8df546b4e0c2))
+* tests ([388cf38](https://github.com/collidor/toolkit/commit/388cf38e38a7cafdee0a00bf3ef222ca2b0b853f))
+
+
+### Features
+
+* **toolkit:** add @collidor/struct modular subpath export ([90c8e2c](https://github.com/collidor/toolkit/commit/90c8e2c6875f3b64ad72419617ab549ca0036b21))
+
 # [1.0.0](https://github.com/collidor/toolkit/compare/v0.4.1...v1.0.0) (2026-10-03)
 
 
