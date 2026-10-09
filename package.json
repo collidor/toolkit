@@ -64,8 +64,10 @@
     "release": "semantic-release",
     "build:demo:angular": "npm --prefix demo/angular run build",
     "build:demo:solid": "npm --prefix demo/solid run build",
+    "build:demo:react": "npm --prefix demo/react run build",
+    "build:demo:svelte": "npm --prefix demo/svelte run build",
     "build:demo:showcase": "npm --prefix demo/showcase run build",
-    "build:demo": "npm run build:demo:angular && npm run build:demo:solid && npm run build:demo:showcase"
+    "build:demo": "npm run build:demo:angular && npm run build:demo:solid && npm run build:demo:react && npm run build:demo:svelte && npm run build:demo:showcase"
   },
   "keywords": [
     "command",

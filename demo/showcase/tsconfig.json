@@ -1,25 +1,23 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
+    "target": "ESNext",
     "useDefineForClassFields": true,
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "module": "ESNext",
-    "skipLibCheck": true,
-    "moduleResolution": "bundler",
+    "moduleResolution": "Bundler",
+    "strict": false,
+    "jsx": "preserve",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "esModuleInterop": true,
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true,
     "noEmit": true,
-    "jsx": "react-jsx",
-    "strict": true,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
       "@demo/shared": ["../shared/index.ts"],
-      "@demo/shared/*": ["../shared/*"]
+      "@demo/shared/*": ["../shared/*"],
+      "@collidor/toolkit": ["../../src/main.ts"]
     }
   },
-  "include": ["src", "../shared"],
-  "exclude": ["../shared/*.test.ts"]
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue", "../shared"]
 }

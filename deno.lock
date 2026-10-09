@@ -30,6 +30,7 @@
     "npm:@collidor/observable-event@^1.1.0": "1.1.0_rxjs@7.8.2",
     "npm:@collidor/result@^1.0.5": "1.0.5",
     "npm:rxjs@^7.8.2": "7.8.2",
+    "npm:zod@4": "4.6.5",
     "npm:zod@^3.24.2": "3.25.76"
   },
   "jsr": {
@@ -66,13 +67,14 @@
     "@collidor/schema-command@1.1.2": {
       "integrity": "ff93e5e2fde77008f1fa5699da9feaa01b2838f49792b80ab5b79f48ede33a05",
       "dependencies": [
-        "jsr:@collidor/command@^7.2.1"
+        "jsr:@collidor/command@^7.2.1",
+        "npm:zod@4"
       ]
     },
     "@collidor/struct@0.1.0": {
       "integrity": "018add96ab929b3e991e09c31a00b770836f2960296b6c15fad3562ca1078055",
       "dependencies": [
-        "npm:zod"
+        "npm:zod@^3.24.2"
       ]
     },
     "@std/assert@1.0.11": {
@@ -191,6 +193,9 @@
     },
     "zod@3.25.76": {
       "integrity": "sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ=="
+    },
+    "zod@4.6.5": {
+      "integrity": "sha512-v5l/aFXZQeai4awLbOpSoHecE9UiMrnfx75tEXLjNonXVARxQ5mOeipTjROUchszUNCqnE+hqAMujRsRHsut2Q=="
     }
   },
   "workspace": {

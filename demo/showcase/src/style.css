@@ -1,0 +1,658 @@
+/* ==========================================================================
+   Collidor Toolkit Documentation & Showcase — Layout & Theming
+   Adheres strictly to Golden Ratio (1.618) spacing and OKLCH color palettes.
+   Supports Dark Matte, Neumorphic, Jewel Nouveau, Troy Strategy, & RPG Parchment.
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--ui-color-surface, oklch(0.14 0.02 260));
+  color: var(--ui-color-text, oklch(0.96 0.005 260));
+  font-family: var(--ui-font-family, -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif);
+  font-size: 15px;
+  line-height: 1.618;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--ui-color-border, oklch(0.28 0.025 260));
+  border-radius: var(--ui-radius-full, 9999px);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ui-color-primary, oklch(0.62 0.2 260));
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--ui-color-text, oklch(0.98 0 0));
+  font-weight: 700;
+  line-height: 1.236;
+  margin-top: 1.618em;
+  margin-bottom: 0.618em;
+  letter-spacing: -0.015em;
+}
+
+h1 {
+  font-size: 2.2rem;
+  margin-top: 0.5em;
+}
+
+h2 {
+  font-size: 1.618rem;
+  border-bottom: 1px solid var(--ui-color-border-subtle, oklch(0.22 0.02 260));
+  padding-bottom: 0.382em;
+}
+
+h3 {
+  font-size: 1.236rem;
+}
+
+p {
+  margin: 0 0 1em 0;
+  color: var(--ui-color-text, oklch(0.92 0.01 260));
+}
+
+a {
+  color: var(--ui-color-primary, oklch(0.65 0.19 230));
+  text-decoration: none;
+  transition: color 0.146s ease;
+}
+a:hover {
+  color: var(--ui-color-primary-hover, oklch(0.72 0.2 230));
+  text-decoration: underline;
+}
+
+:not(pre) > code {
+  font-family: var(--ui-font-mono, 'SF Mono', monospace);
+  font-size: 0.9em;
+  background-color: var(--ui-color-surface-elevated, oklch(0.2 0.02 260));
+  color: var(--ui-color-accent, oklch(0.75 0.18 190));
+  padding: 0.146em 0.382em;
+  border-radius: var(--ui-radius-sm, 4px);
+  border: 1px solid var(--ui-color-border-subtle, oklch(0.25 0.02 260));
+}
+
+pre code {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  color: inherit;
+  font-size: inherit;
+  box-shadow: none !important;
+}
+
+/* Header */
+.docs-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 60px;
+  background: var(--ui-color-surface-elevated, oklch(0.16 0.02 260));
+  border-bottom: 1px solid var(--ui-color-border, oklch(0.25 0.02 260));
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.618em;
+}
+
+/* Callouts */
+.callout {
+  padding: 1em 1.236em;
+  border-radius: var(--ui-radius-md, 8px);
+  margin: 1.618em 0;
+  border-left: 4px solid var(--ui-color-primary, oklch(0.65 0.19 230));
+  background: var(--ui-color-surface-elevated, oklch(0.17 0.02 260));
+}
+.callout-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 0.382em;
+  display: flex;
+  align-items: center;
+  gap: 0.618em;
+}
+.callout.info {
+  border-left-color: var(--ui-color-info, oklch(0.7 0.16 225));
+  background: var(--ui-color-info-subtle, oklch(0.7 0.16 225 / 0.1));
+}
+.callout.tip {
+  border-left-color: var(--ui-color-success, oklch(0.68 0.18 145));
+  background: var(--ui-color-success-subtle, oklch(0.68 0.18 145 / 0.1));
+}
+.callout.warning {
+  border-left-color: var(--ui-color-warning, oklch(0.75 0.18 70));
+  background: var(--ui-color-warning-subtle, oklch(0.75 0.18 70 / 0.1));
+}
+
+/* Feature Grid */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.236em;
+  margin: 1.618em 0;
+}
+
+.feature-card {
+  background: var(--ui-card-bg, oklch(0.17 0.02 260));
+  border: 1px solid var(--ui-color-border, oklch(0.26 0.02 260));
+  border-radius: var(--ui-radius-md, 8px);
+  padding: 1.236em;
+  transition: transform 0.146s ease, border-color 0.146s ease;
+}
+.feature-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--ui-color-primary, oklch(0.65 0.19 230));
+}
+.feature-card h4 {
+  margin-top: 0;
+  color: var(--ui-color-text, oklch(0.98 0 0));
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+/* Badges */
+.ui-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--ui-radius-full, 9999px);
+  border: 1px solid transparent;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.ui-badge--sm {
+  font-size: 0.65rem;
+  padding: 1px 6px;
+}
+.ui-badge--primary {
+  background: var(--ui-color-primary-subtle, oklch(0.65 0.19 230 / 0.18));
+  color: var(--ui-color-primary, oklch(0.72 0.2 230));
+  border-color: var(--ui-color-primary-border, oklch(0.65 0.19 230 / 0.35));
+}
+.ui-badge--accent {
+  background: var(--ui-color-accent-subtle, oklch(0.68 0.18 160 / 0.18));
+  color: var(--ui-color-accent, oklch(0.78 0.18 160));
+  border-color: var(--ui-color-accent-border, oklch(0.68 0.18 160 / 0.35));
+}
+
+/* Code Blocks */
+.code-block {
+  position: relative;
+  background: var(--ui-color-surface-elevated, oklch(0.12 0.015 260));
+  border: 1px solid var(--ui-color-border, oklch(0.25 0.02 260));
+  border-radius: var(--ui-radius-md, 8px);
+  margin: 1.236em 0;
+  overflow: hidden;
+  box-shadow: var(--ui-shadow-sm, 0 2px 6px -1px #00000014);
+}
+
+.code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.382em 1em;
+  background: var(--ui-card-header-bg, oklch(0.18 0.02 260));
+  border-bottom: 1px solid var(--ui-color-border-subtle, oklch(0.24 0.02 260));
+  font-family: var(--ui-font-mono, monospace);
+  font-size: 0.78rem;
+  color: var(--ui-card-header-color, var(--ui-color-text-muted, oklch(0.7 0.02 260)));
+}
+
+.code-block pre,
+.output-pre {
+  margin: 0;
+  padding: 1.1em 1.236em;
+  overflow-x: auto;
+  font-family: var(--ui-font-mono, 'SF Mono', 'Fira Code', Menlo, Monaco, Consolas, monospace);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--ui-color-text, oklch(0.95 0 0));
+  background: var(--ui-color-surface-elevated, oklch(0.11 0.015 260));
+  tab-size: 2;
+}
+
+.copy-btn {
+  background: var(--ui-color-surface-hover, oklch(0.2 0.02 260));
+  border: 1px solid var(--ui-color-border, oklch(0.3 0.02 260));
+  color: var(--ui-color-text-muted, oklch(0.75 0.02 260));
+  border-radius: var(--ui-radius-sm, 4px);
+  font-size: 0.75rem;
+  padding: 0.236em 0.618em;
+  cursor: pointer;
+  transition: all 0.146s ease;
+  font-family: inherit;
+}
+.copy-btn:hover {
+  background: var(--ui-color-primary, oklch(0.62 0.2 260));
+  color: #ffffff;
+  border-color: var(--ui-color-primary, oklch(0.62 0.2 260));
+}
+
+/* Pokemon Type Badges */
+.type-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+.type-normal { background: #9fa19f; }
+.type-fire { background: #e62829; }
+.type-water { background: #2980ef; }
+.type-grass { background: #3fa129; }
+.type-electric { background: #fac000; color: #1e293b; text-shadow: none; }
+.type-ice { background: #3dcef3; color: #0f172a; text-shadow: none; }
+.type-fighting { background: #ff8000; }
+.type-poison { background: #9141cb; }
+.type-ground { background: #915121; }
+.type-flying { background: #81b9ef; color: #0f172a; text-shadow: none; }
+.type-psychic { background: #ef4179; }
+.type-bug { background: #91a119; }
+.type-rock { background: #afa981; }
+.type-ghost { background: #704170; }
+.type-dragon { background: #5060e1; }
+.type-steel { background: #60a1b8; }
+.type-fairy { background: #ef70ef; }
+
+/* ==========================================================================
+   Vibrant Prism.js Syntax Highlighting Tokens (OKLCH Color Palette)
+   ========================================================================== */
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: oklch(0.58 0.035 260);
+  font-style: italic;
+}
+
+.token.punctuation {
+  color: oklch(0.72 0.03 260);
+}
+
+.token.namespace {
+  opacity: 0.75;
+}
+
+.token.tag {
+  color: oklch(0.78 0.22 25);
+}
+
+.token.attr-name {
+  color: oklch(0.85 0.18 80);
+  font-weight: 500;
+}
+
+.token.attr-value {
+  color: oklch(0.84 0.20 150);
+}
+
+.token.property,
+.token.symbol,
+.token.deleted {
+  color: oklch(0.78 0.18 190);
+}
+
+.token.selector {
+  color: oklch(0.82 0.22 135);
+}
+
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: oklch(0.84 0.19 145);
+}
+
+.token.operator,
+.token.entity {
+  color: oklch(0.85 0.16 230);
+}
+
+.token.number,
+.token.boolean {
+  color: oklch(0.84 0.19 75);
+  font-weight: 600;
+}
+
+.token.url {
+  color: oklch(0.78 0.16 25);
+}
+
+.token.atrule,
+.token.keyword {
+  color: oklch(0.78 0.24 320);
+  font-weight: 600;
+}
+
+.token.function {
+  color: oklch(0.82 0.18 220);
+  font-weight: 500;
+}
+
+.token.class-name {
+  color: oklch(0.86 0.17 85);
+  font-weight: 600;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: oklch(0.82 0.18 45);
+}
+
+/* ==========================================================================
+   Theme Adaptations for Parchment, Troy, Neumorphic & Jewel
+   ========================================================================== */
+
+/* ── 1. RPG Parchment ("Monster Manual" Aged Vellum & Inked Manuscript) ───── */
+[data-theme=rpg-parchment] {
+  --ui-color-surface: oklch(0.93 0.02 85);
+  --ui-color-surface-elevated: oklch(0.96 0.016 82);
+  --ui-color-border: oklch(0.68 0.08 55);
+  --ui-color-border-subtle: oklch(0.78 0.06 65);
+  --ui-color-text: oklch(0.22 0.04 45);
+  --ui-color-text-muted: oklch(0.42 0.05 50);
+}
+
+[data-theme=rpg-parchment] .code-block,
+[data-theme=rpg-parchment] .output-pre {
+  background: oklch(0.965 0.016 82);
+  border: 1px solid oklch(0.58 0.10 52);
+  border-radius: 2px;
+  box-shadow: 0 3px 12px rgba(60, 30, 10, 0.18);
+}
+
+[data-theme=rpg-parchment] .code-header {
+  background: oklch(0.38 0.18 20);
+  border-bottom: 1px solid oklch(0.30 0.16 20);
+  color: oklch(0.97 0.014 82);
+}
+
+[data-theme=rpg-parchment] .code-header .header-tag {
+  color: oklch(0.97 0.014 82);
+}
+
+[data-theme=rpg-parchment] .code-header .copy-btn {
+  background: oklch(0.30 0.16 20);
+  border-color: oklch(0.48 0.14 25);
+  color: oklch(0.97 0.014 82);
+}
+
+[data-theme=rpg-parchment] .code-header .copy-btn:hover {
+  background: oklch(0.48 0.18 22);
+  color: #ffffff;
+}
+
+[data-theme=rpg-parchment] .code-block pre,
+[data-theme=rpg-parchment] .output-pre {
+  background: oklch(0.965 0.016 82);
+  color: oklch(0.18 0.03 45);
+}
+
+[data-theme=rpg-parchment] .token.keyword {
+  color: oklch(0.38 0.18 20);
+  font-weight: 700;
+}
+
+[data-theme=rpg-parchment] .token.string {
+  color: oklch(0.32 0.14 140);
+}
+
+[data-theme=rpg-parchment] .token.function {
+  color: oklch(0.34 0.16 230);
+  font-weight: 600;
+}
+
+[data-theme=rpg-parchment] .token.number,
+[data-theme=rpg-parchment] .token.boolean {
+  color: oklch(0.42 0.16 55);
+  font-weight: 700;
+}
+
+[data-theme=rpg-parchment] .token.comment {
+  color: oklch(0.45 0.05 50);
+  font-style: italic;
+}
+
+[data-theme=rpg-parchment] .token.punctuation {
+  color: oklch(0.24 0.03 45);
+}
+
+[data-theme=rpg-parchment] .token.property,
+[data-theme=rpg-parchment] .token.attr-name {
+  color: oklch(0.32 0.08 40);
+  font-weight: 600;
+}
+
+[data-theme=rpg-parchment] .token.tag {
+  color: oklch(0.38 0.18 20);
+  font-weight: 700;
+}
+
+[data-theme=rpg-parchment] .token.class-name {
+  color: oklch(0.36 0.15 70);
+  font-weight: 700;
+}
+
+/* ── 2. Troy Strategy (Aegean Sand Parchment, Basalt & Cast Bronze) ────────── */
+[data-theme=troy-strategy] {
+  --ui-color-surface: oklch(0.90 0.035 78);
+  --ui-color-surface-elevated: oklch(0.93 0.032 78);
+  --ui-color-border: oklch(0.62 0.10 65);
+  --ui-color-border-subtle: oklch(0.75 0.06 70);
+  --ui-color-text: oklch(0.18 0.04 45);
+  --ui-color-text-muted: oklch(0.40 0.05 50);
+}
+
+[data-theme=troy-strategy] .code-block,
+[data-theme=troy-strategy] .output-pre {
+  background: oklch(0.91 0.038 78);
+  border: 1px solid oklch(0.52 0.12 65);
+  border-radius: var(--ui-radius-sm, 2px);
+  box-shadow: 0 4px 14px rgba(45, 25, 10, 0.20);
+}
+
+[data-theme=troy-strategy] .code-header {
+  background: oklch(0.22 0.04 45);
+  border-bottom: 1px solid oklch(0.42 0.10 60);
+  color: oklch(0.92 0.035 78);
+}
+
+[data-theme=troy-strategy] .code-header .header-tag {
+  color: oklch(0.92 0.035 78);
+}
+
+[data-theme=troy-strategy] .code-header .copy-btn {
+  background: oklch(0.30 0.05 45);
+  border-color: oklch(0.52 0.12 65);
+  color: oklch(0.92 0.035 78);
+}
+
+[data-theme=troy-strategy] .code-header .copy-btn:hover {
+  background: oklch(0.42 0.10 60);
+  color: #ffffff;
+}
+
+[data-theme=troy-strategy] .code-block pre,
+[data-theme=troy-strategy] .output-pre {
+  background: oklch(0.91 0.038 78);
+  color: oklch(0.16 0.03 40);
+}
+
+[data-theme=troy-strategy] .token.keyword {
+  color: oklch(0.34 0.18 35);
+  font-weight: 700;
+}
+
+[data-theme=troy-strategy] .token.string {
+  color: oklch(0.30 0.13 140);
+}
+
+[data-theme=troy-strategy] .token.function {
+  color: oklch(0.32 0.14 225);
+  font-weight: 600;
+}
+
+[data-theme=troy-strategy] .token.number,
+[data-theme=troy-strategy] .token.boolean {
+  color: oklch(0.40 0.15 65);
+  font-weight: 700;
+}
+
+[data-theme=troy-strategy] .token.comment {
+  color: oklch(0.42 0.05 50);
+  font-style: italic;
+}
+
+[data-theme=troy-strategy] .token.punctuation {
+  color: oklch(0.22 0.03 40);
+}
+
+[data-theme=troy-strategy] .token.property,
+[data-theme=troy-strategy] .token.attr-name {
+  color: oklch(0.30 0.07 45);
+  font-weight: 600;
+}
+
+[data-theme=troy-strategy] .token.tag {
+  color: oklch(0.34 0.18 35);
+  font-weight: 700;
+}
+
+[data-theme=troy-strategy] .token.class-name {
+  color: oklch(0.34 0.14 65);
+  font-weight: 700;
+}
+
+/* ── 3. Neumorphic (Light Studio Slate) ──────────────────────────────────── */
+[data-theme=neumorphic] {
+  --ui-color-surface: oklch(0.93 0.006 260);
+  --ui-color-surface-elevated: oklch(0.96 0.005 260);
+  --ui-color-border: oklch(0.82 0.01 260);
+  --ui-color-border-subtle: oklch(0.88 0.008 260);
+  --ui-color-text: oklch(0.18 0.025 260);
+  --ui-color-text-muted: oklch(0.45 0.02 260);
+}
+
+[data-theme=neumorphic] .code-block,
+[data-theme=neumorphic] .output-pre {
+  background: oklch(0.95 0.005 260);
+  border: 1px solid oklch(0.78 0.01 260);
+  box-shadow: 4px 4px 10px rgba(0,0,0,0.05), -4px -4px 10px rgba(255,255,255,0.8);
+}
+
+[data-theme=neumorphic] .code-header {
+  background: oklch(0.90 0.006 260);
+  border-bottom: 1px solid oklch(0.80 0.01 260);
+  color: oklch(0.18 0.025 260);
+}
+
+[data-theme=neumorphic] .code-header .header-tag {
+  color: oklch(0.18 0.025 260);
+}
+
+[data-theme=neumorphic] .code-header .copy-btn {
+  background: oklch(0.94 0.005 260);
+  border-color: oklch(0.78 0.01 260);
+  color: oklch(0.24 0.02 260);
+}
+
+[data-theme=neumorphic] .code-header .copy-btn:hover {
+  background: var(--ui-color-primary, oklch(0.62 0.2 260));
+  color: #ffffff;
+}
+
+[data-theme=neumorphic] .code-block pre,
+[data-theme=neumorphic] .output-pre {
+  background: oklch(0.95 0.005 260);
+  color: oklch(0.18 0.025 260);
+}
+
+[data-theme=neumorphic] .token.keyword {
+  color: oklch(0.38 0.24 310);
+  font-weight: 700;
+}
+
+[data-theme=neumorphic] .token.string {
+  color: oklch(0.36 0.18 145);
+}
+
+[data-theme=neumorphic] .token.function {
+  color: oklch(0.35 0.18 240);
+  font-weight: 600;
+}
+
+[data-theme=neumorphic] .token.number,
+[data-theme=neumorphic] .token.boolean {
+  color: oklch(0.42 0.18 60);
+  font-weight: 700;
+}
+
+[data-theme=neumorphic] .token.punctuation {
+  color: oklch(0.28 0.04 260);
+}
+
+[data-theme=neumorphic] .token.property,
+[data-theme=neumorphic] .token.attr-name {
+  color: oklch(0.32 0.16 200);
+  font-weight: 600;
+}
+
+[data-theme=neumorphic] .token.tag {
+  color: oklch(0.38 0.20 25);
+  font-weight: 700;
+}
+
+[data-theme=neumorphic] .token.class-name {
+  color: oklch(0.38 0.18 85);
+  font-weight: 700;
+}
+
+/* ── 4. Jewel Nouveau (Lalique Jadeite & Antique Gold) ───────────────────── */
+[data-theme=jewel],
+[data-theme=jewel-artnouveau] {
+  --ui-color-surface: #141719;
+  --ui-color-surface-elevated: #1a1f22;
+  --ui-color-border: #313f42;
+  --ui-color-border-subtle: #242e31;
+  --ui-color-text: #fff4dd;
+  --ui-color-text-muted: #a6b5b5;
+  --ui-color-primary: #4ea388;
+  --ui-color-accent: #b89052;
+}
+
+[data-theme=jewel] .code-block,
+[data-theme=jewel-artnouveau] .code-block {
+  border-color: #313f42;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 1px rgba(78, 163, 136, 0.3);
+}
+
+[data-theme=jewel] .code-header,
+[data-theme=jewel-artnouveau] .code-header {
+  background: #1e262a;
+  border-bottom-color: #313f42;
+  color: #fff4dd;
+}

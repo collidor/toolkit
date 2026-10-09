@@ -48,10 +48,16 @@ jobs:
       - name: Install Solid sub-app dependencies
         run: npm --prefix demo/solid ci
 
+      - name: Install React sub-app dependencies
+        run: npm --prefix demo/react ci
+
+      - name: Install Svelte sub-app dependencies
+        run: npm --prefix demo/svelte ci
+
       - name: Build Toolkit library
         run: npm run build
 
-      - name: Build Multi-Framework Demo (Showcase, Angular, Solid)
+      - name: Build Multi-Framework Demo
         run: npm run build:demo
 
       - name: Setup GitHub Pages

@@ -8,6 +8,33 @@ export interface IframeConnectionOptions {
   onDisconnected?: () => void;
 }
 
+function applyThemeToDocument(theme: string) {
+  if (typeof document === "undefined") return;
+  document.documentElement.setAttribute("data-theme", theme);
+  const isLight = theme === "light" || theme === "neumorphic" || theme === "troy-strategy" || theme === "rpg-parchment";
+  document.documentElement.classList.toggle("light", isLight);
+  document.documentElement.classList.toggle("dark", !isLight);
+
+  if (document.body) {
+    if (theme === "neumorphic") {
+      document.body.style.backgroundColor = "oklch(0.92 0.008 260)";
+      document.body.style.color = "oklch(0.18 0.025 260)";
+    } else if (theme === "rpg-parchment") {
+      document.body.style.backgroundColor = "oklch(0.94 0.02 85)";
+      document.body.style.color = "oklch(0.24 0.04 45)";
+    } else if (theme === "troy-strategy") {
+      document.body.style.backgroundColor = "oklch(0.91 0.038 78)";
+      document.body.style.color = "oklch(0.18 0.04 45)";
+    } else if (theme === "jewel" || theme === "jewel-artnouveau") {
+      document.body.style.backgroundColor = "#14181a";
+      document.body.style.color = "#fff4dd";
+    } else {
+      document.body.style.backgroundColor = "#090d16";
+      document.body.style.color = "#f8fafc";
+    }
+  }
+}
+
 /**
  * Host-side helper: Listens for COLLIDOR_IFRAME_READY from a sandboxed iframe,
  * creates a dedicated MessageChannel, binds port1 to the host PortChannel,
@@ -34,7 +61,7 @@ export function connectIframePort(options: IframeConnectionOptions): () => void 
       // 2. Attach port1 to the host PortChannel (initiates internal startEvent)
       cleanupPort = channel.addPort(activePort);
 
-      const currentTheme = typeof document !== "undefined" && document.documentElement.classList.contains("light") ? "light" : "dark";
+      const currentTheme = (typeof document !== "undefined" && document.documentElement.getAttribute("data-theme")) || "dark";
 
       // 3. Transfer port2 to the iframe window with initial theme
       iframe.contentWindow.postMessage(
@@ -74,14 +101,8 @@ export function initializeIframePort(
   // Direct theme listener for immediate postMessage synchronization
   if (typeof window !== "undefined") {
     window.addEventListener("message", (e: MessageEvent) => {
-      if (e.data?.type === "COLLIDOR_SET_THEME") {
-        const theme = e.data.theme;
-        document.documentElement.classList.toggle("light", theme === "light");
-        document.documentElement.classList.toggle("dark", theme === "dark");
-        if (document.body) {
-          document.body.style.backgroundColor = theme === "light" ? "#f8fafc" : "#090d16";
-          document.body.style.color = theme === "light" ? "#0f172a" : "#f8fafc";
-        }
+      if (e.data?.type === "COLLIDOR_SET_THEME" && e.data.theme) {
+        applyThemeToDocument(e.data.theme);
       }
     });
   }
@@ -99,12 +120,7 @@ export function initializeIframePort(
 
         // Apply theme sent by host
         if (event.data.theme) {
-          document.documentElement.classList.toggle("light", event.data.theme === "light");
-          document.documentElement.classList.toggle("dark", event.data.theme === "dark");
-          if (document.body) {
-            document.body.style.backgroundColor = event.data.theme === "light" ? "#f8fafc" : "#090d16";
-            document.body.style.color = event.data.theme === "light" ? "#0f172a" : "#f8fafc";
-          }
+          applyThemeToDocument(event.data.theme);
         }
 
         const port = event.ports[0];
