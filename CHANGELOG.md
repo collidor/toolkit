@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/collidor/toolkit/compare/v1.2.0...v1.2.1) (2026-10-09)
+
+
+### Bug Fixes
+
+* **demo:** wire iframes via scoped broadcast channel to isolate browser tabs ([9f94d38](https://github.com/collidor/toolkit/commit/9f94d38d48211032828b2d2aea6d161f0c833f3d))
+
 # [1.2.0](https://github.com/collidor/toolkit/compare/v1.1.3...v1.2.0) (2026-10-09)
 
 
