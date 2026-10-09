@@ -49,37 +49,29 @@ function switchRightTab(tab: "angular" | "solid") {
   rightPanelTab.value = tab;
 }
 
+function getIframeSrc(app: "react" | "svelte" | "angular" | "solid"): string {
+  const currentTheme =
+    (typeof document !== "undefined" &&
+      document.documentElement.getAttribute("data-theme")) ||
+    "dark";
+  return `./${app}/index.html?channelId=${encodeURIComponent(
+    busService.channelId
+  )}&theme=${encodeURIComponent(currentTheme)}`;
+}
+
 function reloadIframe(target: "react" | "svelte" | "right") {
   if (target === "react" && reactIframeRef.value) {
-    reactIframeRef.value.src = "./react/index.html";
+    reactIframeRef.value.src = getIframeSrc("react");
   } else if (target === "svelte" && svelteIframeRef.value) {
-    svelteIframeRef.value.src = "./svelte/index.html";
+    svelteIframeRef.value.src = getIframeSrc("svelte");
   } else if (target === "right") {
     if (rightPanelTab.value === "angular" && angularIframeRef.value) {
-      angularIframeRef.value.src = "./angular/index.html";
+      angularIframeRef.value.src = getIframeSrc("angular");
     } else if (rightPanelTab.value === "solid" && solidIframeRef.value) {
-      solidIframeRef.value.src = "./solid/index.html";
+      solidIframeRef.value.src = getIframeSrc("solid");
     }
   }
 }
-
-watch(rightPanelTab, (newTab) => {
-  if (newTab === "angular") {
-    busService.registerAngularHandlers();
-    busService.unregisterSolidHandlers();
-    if (angularIframeRef.value) {
-      cleanupAngular?.();
-      cleanupAngular = busService.attachIframe(angularIframeRef.value, "Angular-Analog");
-    }
-  } else {
-    busService.registerSolidHandlers();
-    busService.unregisterAngularHandlers();
-    if (solidIframeRef.value) {
-      cleanupSolid?.();
-      cleanupSolid = busService.attachIframe(solidIframeRef.value, "Solid-Battle");
-    }
-  }
-});
 
 onMounted(() => {
   // 1. Subscribe to FocusViewEvent from child frames
@@ -89,18 +81,18 @@ onMounted(() => {
     }
   });
 
-  // 2. Attach React and Svelte persistent iframes
+  // 2. Attach all 4 iframes to busService
   if (reactIframeRef.value) {
     cleanupReact = busService.attachIframe(reactIframeRef.value, "React-Catalog");
   }
   if (svelteIframeRef.value) {
     cleanupSvelte = busService.attachIframe(svelteIframeRef.value, "Svelte-Inspector");
   }
-
-  // 3. Attach initial right-panel iframe (Angular default)
-  if (rightPanelTab.value === "angular" && angularIframeRef.value) {
-    busService.registerAngularHandlers();
+  if (angularIframeRef.value) {
     cleanupAngular = busService.attachIframe(angularIframeRef.value, "Angular-Analog");
+  }
+  if (solidIframeRef.value) {
+    cleanupSolid = busService.attachIframe(solidIframeRef.value, "Solid-Battle");
   }
 });
 
@@ -208,7 +200,7 @@ onUnmounted(() => {
                 <path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />
               </svg>
             </button>
-            <a href="./react/index.html" target="_blank" rel="noopener noreferrer" class="win-btn" title="Open React in New Tab">
+            <a :href="getIframeSrc('react')" target="_blank" rel="noopener noreferrer" class="win-btn" title="Open React in New Tab">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
               </svg>
@@ -218,10 +210,11 @@ onUnmounted(() => {
         <div class="iframe-container">
           <iframe
             ref="reactIframeRef"
-            src="./react/index.html"
+            :src="getIframeSrc('react')"
+            :name="busService.channelId"
             title="React 18 Catalog Sub-App"
             class="demo-iframe"
-            sandbox="allow-scripts allow-same-origin"
+            sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
           />
         </div>
       </div>
@@ -248,7 +241,7 @@ onUnmounted(() => {
                 <path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />
               </svg>
             </button>
-            <a href="./svelte/index.html" target="_blank" rel="noopener noreferrer" class="win-btn" title="Open Svelte in New Tab">
+            <a :href="getIframeSrc('svelte')" target="_blank" rel="noopener noreferrer" class="win-btn" title="Open Svelte in New Tab">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
               </svg>
@@ -258,10 +251,11 @@ onUnmounted(() => {
         <div class="iframe-container">
           <iframe
             ref="svelteIframeRef"
-            src="./svelte/index.html"
+            :src="getIframeSrc('svelte')"
+            :name="busService.channelId"
             title="Svelte 5 Inspector Sub-App"
             class="demo-iframe"
-            sandbox="allow-scripts allow-same-origin"
+            sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
           />
         </div>
       </div>
@@ -300,7 +294,7 @@ onUnmounted(() => {
               </svg>
             </button>
             <a
-              :href="rightPanelTab === 'angular' ? './angular/index.html' : './solid/index.html'"
+              :href="getIframeSrc(rightPanelTab)"
               target="_blank"
               rel="noopener noreferrer"
               class="win-btn"
@@ -314,22 +308,22 @@ onUnmounted(() => {
         </div>
         <div class="iframe-container">
           <iframe
-            v-if="rightPanelTab === 'angular'"
-            key="angular-frame"
+            v-show="rightPanelTab === 'angular'"
             ref="angularIframeRef"
-            src="./angular/index.html"
+            :src="getIframeSrc('angular')"
+            :name="busService.channelId"
             title="Angular Team Builder Sub-App"
             class="demo-iframe"
-            sandbox="allow-scripts allow-same-origin"
+            sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
           />
           <iframe
-            v-else
-            key="solid-frame"
+            v-show="rightPanelTab === 'solid'"
             ref="solidIframeRef"
-            src="./solid/index.html"
+            :src="getIframeSrc('solid')"
+            :name="busService.channelId"
             title="Solid Battle Arena Sub-App"
             class="demo-iframe"
-            sandbox="allow-scripts allow-same-origin"
+            sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
           />
         </div>
       </div>

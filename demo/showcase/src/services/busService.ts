@@ -23,9 +23,14 @@ import {
   TeamUpdatedEvent,
   TelemetryEntry,
   TelemetryLoggedEvent,
+  ThemeChangedEvent,
+  broadcastTheme,
+  getHostSessionId,
 } from "@demo/shared";
 
 class BusService {
+  public channelId: string;
+  public broadcastChannel?: BroadcastChannel;
   public portPlugin: PortChannelPlugin;
   public eventBus: EventBus;
   public commandBus: AsyncCommandBus<any, any>;
@@ -95,12 +100,19 @@ class BusService {
   }
 
   constructor() {
+    this.channelId = getHostSessionId();
+
     // 1. Initialize Cross-Context IPC Plugin
     this.portPlugin = new PortChannelPlugin({
       commandTimeout: 15000,
       ackTimeout: 5000,
       bufferTimeout: 10000,
     });
+
+    if (typeof BroadcastChannel !== "undefined") {
+      this.broadcastChannel = new BroadcastChannel(this.channelId);
+      this.portPlugin.addPort(this.broadcastChannel as unknown as MessagePort);
+    }
 
     // 2. Initialize Core Buses
     this.eventBus = new EventBus({
@@ -197,8 +209,9 @@ class BusService {
       return res;
     });
 
-    // Initially register Angular handlers (default active tab is Angular)
+    // Initially register both Angular and Solid handlers
     this.registerAngularHandlers();
+    this.registerSolidHandlers();
   }
 
   public registerAngularHandlers(): void {
@@ -385,6 +398,18 @@ class BusService {
         this.logTelemetry("port", "PortDisconnected", name, { status: "disconnected" });
       },
     });
+  }
+
+  public setTheme(theme: string): void {
+    broadcastTheme(this.channelId, theme);
+    const isLight =
+      theme === "light" ||
+      theme === "neumorphic" ||
+      theme === "troy-strategy" ||
+      theme === "rpg-parchment";
+    this.eventBus.emit(
+      new ThemeChangedEvent({ theme: isLight ? "light" : "dark" })
+    );
   }
 
   public logTelemetry(

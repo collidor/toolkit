@@ -17,7 +17,7 @@ function simulatePokemonSelect() {
 
 function simulateThemeBroadcast() {
   const theme = "jewel";
-  busService.eventBus.emit(new ThemeChangedEvent({ theme }));
+  busService.setTheme(theme);
   busService.logTelemetry("event", "ThemeChangedEvent", "ArchitectureView", { theme });
   dispatchStatus.value = `Dispatched ThemeChangedEvent (theme: jewel) to all connected realms`;
   setTimeout(() => { dispatchStatus.value = null; }, 3000);

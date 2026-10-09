@@ -2,16 +2,20 @@ import type { PortChannel } from "@collidor/event";
 
 export interface IframeConnectionOptions {
   iframe: HTMLIFrameElement;
-  channel: PortChannel<any>;
+  channel?: PortChannel<any>;
   name?: string;
   onConnected?: () => void;
   onDisconnected?: () => void;
 }
 
-function applyThemeToDocument(theme: string) {
+export function applyThemeToDocument(theme: string) {
   if (typeof document === "undefined") return;
   document.documentElement.setAttribute("data-theme", theme);
-  const isLight = theme === "light" || theme === "neumorphic" || theme === "troy-strategy" || theme === "rpg-parchment";
+  const isLight =
+    theme === "light" ||
+    theme === "neumorphic" ||
+    theme === "troy-strategy" ||
+    theme === "rpg-parchment";
   document.documentElement.classList.toggle("light", isLight);
   document.documentElement.classList.toggle("dark", !isLight);
 
@@ -35,120 +39,148 @@ function applyThemeToDocument(theme: string) {
   }
 }
 
+let cachedHostSessionId: string | null = null;
+
 /**
- * Host-side helper: Listens for COLLIDOR_IFRAME_READY from a sandboxed iframe,
- * creates a dedicated MessageChannel, binds port1 to the host PortChannel,
- * and transfers port2 to the iframe.
+ * Returns a unique session ID for the host window instance.
+ * Generates an ID unique to this tab/window instance so different browser tabs
+ * have isolated BroadcastChannels and don't conflict with each other.
+ */
+export function getHostSessionId(): string {
+  if (cachedHostSessionId) return cachedHostSessionId;
+  if (typeof window !== "undefined") {
+    const rand = Math.random().toString(36).substring(2, 8);
+    cachedHostSessionId = `collidor-demo-${Date.now().toString(36)}-${rand}`;
+  } else {
+    cachedHostSessionId = "collidor-demo-default";
+  }
+  return cachedHostSessionId;
+}
+
+/**
+ * Reads the channel ID for an iframe:
+ * 1. URL search parameter (?channelId=... or ?channel=...)
+ * 2. window.name (set on the iframe tag)
+ * 3. Fallback to host session ID or default
+ */
+export function getIframeChannelId(): string {
+  if (typeof window !== "undefined") {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const urlId = params.get("channelId") || params.get("channel");
+      if (urlId) return urlId;
+    } catch {
+      // ignore
+    }
+
+    if (window.name && window.name.startsWith("collidor-demo-")) {
+      return window.name;
+    }
+  }
+  return getHostSessionId();
+}
+
+/**
+ * Broadcasts a theme update message to all iframes sharing this BroadcastChannel
+ * and applies it locally.
+ */
+export function broadcastTheme(channelId: string, theme: string): void {
+  applyThemeToDocument(theme);
+  if (typeof window !== "undefined" && typeof BroadcastChannel !== "undefined") {
+    try {
+      const bc = new BroadcastChannel(channelId);
+      bc.postMessage({ type: "COLLIDOR_SET_THEME", theme });
+      bc.close();
+    } catch {
+      // ignore
+    }
+  }
+}
+
+/**
+ * Host-side helper: Connects the host's PortChannel to the scoped BroadcastChannel.
+ * Also monitors the iframe element and provides cleanup.
  */
 export function connectIframePort(options: IframeConnectionOptions): () => void {
-  const { iframe, channel, name, onConnected, onDisconnected } = options;
-  let activePort: MessagePort | null = null;
-  let cleanupPort: (() => void) | null = null;
-  let isHandshakeComplete = false;
+  const { iframe, name, onConnected, onDisconnected } = options;
+  const channelId = getHostSessionId();
 
-  const handleWindowMessage = (event: MessageEvent) => {
-    // Security check: Only accept messages originating from the target iframe contentWindow
-    if (!iframe.contentWindow || event.source !== iframe.contentWindow) return;
-
-    if (event.data?.type === "COLLIDOR_IFRAME_READY") {
-      if (isHandshakeComplete) return;
-      isHandshakeComplete = true;
-
-      // 1. Create dedicated point-to-point MessageChannel
-      const messageChannel = new MessageChannel();
-      activePort = messageChannel.port1;
-
-      // 2. Attach port1 to the host PortChannel (initiates internal startEvent)
-      cleanupPort = channel.addPort(activePort);
-
-      const currentTheme = (typeof document !== "undefined" && document.documentElement.getAttribute("data-theme")) || "dark";
-
-      // 3. Transfer port2 to the iframe window with initial theme
-      iframe.contentWindow.postMessage(
-        { type: "COLLIDOR_PORT_INIT", name: name ?? "iframe-widget", theme: currentTheme },
-        "*",
-        [messageChannel.port2],
-      );
-
-      onConnected?.();
+  const sendInitTheme = () => {
+    try {
+      if (iframe.contentWindow) {
+        const currentTheme =
+          (typeof document !== "undefined" &&
+            document.documentElement.getAttribute("data-theme")) ||
+          "dark";
+        iframe.contentWindow.postMessage(
+          {
+            type: "COLLIDOR_PORT_INIT",
+            channelId,
+            theme: currentTheme,
+            name: name ?? "iframe-widget",
+          },
+          "*"
+        );
+      }
+    } catch {
+      // ignore cross-origin or unmounted
     }
   };
 
-  window.addEventListener("message", handleWindowMessage);
+  iframe.addEventListener("load", sendInitTheme);
+  sendInitTheme();
+  onConnected?.();
 
   return () => {
-    window.removeEventListener("message", handleWindowMessage);
-    if (cleanupPort) cleanupPort();
-    if (activePort) {
-      activePort.close();
-      activePort = null;
-    }
+    iframe.removeEventListener("load", sendInitTheme);
     onDisconnected?.();
   };
 }
 
 /**
- * Iframe-side helper: Broadcasts COLLIDOR_IFRAME_READY to parent until COLLIDOR_PORT_INIT
- * is received, then binds the transferred MessagePort to the iframe's PortChannel.
+ * Iframe-side helper: Connects the iframe's PortChannel to the scoped BroadcastChannel
+ * matching the channel ID provided by the host.
  */
 export function initializeIframePort(
   channel: PortChannel<any>,
-  options?: { maxRetries?: number; intervalMs?: number },
+  options?: { channelId?: string; maxRetries?: number; intervalMs?: number }
 ): Promise<MessagePort> {
-  const maxRetries = options?.maxRetries ?? 50;
-  const intervalMs = options?.intervalMs ?? 150;
+  const channelId = options?.channelId || getIframeChannelId();
 
-  // Direct theme listener for immediate postMessage synchronization
+  // Create scoped BroadcastChannel
+  const bc = new BroadcastChannel(channelId);
+
+  // Apply initial theme from URL search params if present
   if (typeof window !== "undefined") {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const theme = params.get("theme");
+      if (theme) {
+        applyThemeToDocument(theme);
+      }
+    } catch {
+      // ignore
+    }
+
+    // Direct window postMessage listener for theme or init
     window.addEventListener("message", (e: MessageEvent) => {
       if (e.data?.type === "COLLIDOR_SET_THEME" && e.data.theme) {
+        applyThemeToDocument(e.data.theme);
+      } else if (e.data?.type === "COLLIDOR_PORT_INIT" && e.data.theme) {
         applyThemeToDocument(e.data.theme);
       }
     });
   }
 
-  return new Promise<MessagePort>((resolve, reject) => {
-    let attempts = 0;
-    let timer: ReturnType<typeof setInterval> | null = null;
-
-    const messageHandler = (event: MessageEvent) => {
-      if (event.source !== window.parent) return;
-
-      if (event.data?.type === "COLLIDOR_PORT_INIT" && event.ports?.[0]) {
-        if (timer) clearInterval(timer);
-        window.removeEventListener("message", messageHandler);
-
-        // Apply theme sent by host
-        if (event.data.theme) {
-          applyThemeToDocument(event.data.theme);
-        }
-
-        const port = event.ports[0];
-        port.start();
-
-        // Attach transferred port to local iframe PortChannel
-        channel.addPort(port);
-        resolve(port);
-      }
-    };
-
-    window.addEventListener("message", messageHandler);
-
-    const pingHost = () => {
-      if (++attempts > maxRetries) {
-        if (timer) clearInterval(timer);
-        window.removeEventListener("message", messageHandler);
-        reject(new Error("Timeout waiting for COLLIDOR_PORT_INIT from host"));
-        return;
-      }
-      try {
-        window.parent.postMessage({ type: "COLLIDOR_IFRAME_READY" }, "*");
-      } catch {
-        // window.parent access might fail if unmounted
-      }
-    };
-
-    timer = setInterval(pingHost, intervalMs);
-    pingHost();
+  // BroadcastChannel message listener for theme broadcasts
+  bc.addEventListener("message", (e: MessageEvent) => {
+    if (e.data?.type === "COLLIDOR_SET_THEME" && e.data.theme) {
+      applyThemeToDocument(e.data.theme);
+    }
   });
+
+  // Attach the BroadcastChannel to the local PortChannel (acts as MessagePortLike)
+  channel.addPort(bc as unknown as MessagePort);
+
+  return Promise.resolve(bc as unknown as MessagePort);
 }

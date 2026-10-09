@@ -53,8 +53,7 @@ function handleScroll() {
 }
 
 function onThemeChange(theme: string) {
-  // Broadcast ThemeChangedEvent over EventBus
-  busService.eventBus.emit(new ThemeChangedEvent({ theme }));
+  busService.setTheme(theme);
   busService.logTelemetry("event", "ThemeChangedEvent", "Host/Shell", { theme });
 
   // Direct postMessage to any active iframes to guarantee instant synchronization

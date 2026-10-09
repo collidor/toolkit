@@ -15,17 +15,23 @@ const portPlugin = new PortChannelPlugin({
 const eventBus = new EventBus({ channel: portPlugin });
 const commandBus = new AsyncCommandBus({ plugin: portPlugin });
 
+function mount() {
+  const rootEl = document.getElementById("root");
+  if (!rootEl) return;
+  ReactDOM.createRoot(rootEl).render(
+    <React.StrictMode>
+      <App eventBus={eventBus} commandBus={commandBus} />
+    </React.StrictMode>
+  );
+}
+
 // Establish connection with parent host window
 initializeIframePort(portPlugin)
   .then(() => {
     console.log("[React Widget] PortChannel successfully connected to Host");
+    mount();
   })
   .catch((err) => {
     console.warn("[React Widget] Standalone or connection timeout:", err);
+    mount();
   });
-
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <App eventBus={eventBus} commandBus={commandBus} />
-  </React.StrictMode>
-);
