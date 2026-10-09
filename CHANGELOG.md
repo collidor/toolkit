@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/collidor/toolkit/compare/v1.1.3...v1.2.0) (2026-10-09)
+
+
+### Features
+
+* **demo:** modernize showcase with collidor-ui, 5 themes and fix github pages deploy ([839dd41](https://github.com/collidor/toolkit/commit/839dd41bc9042fb48441776d6ee716b9dc67acf4))
+
 ## [1.1.3](https://github.com/collidor/toolkit/compare/v1.1.2...v1.1.3) (2026-10-08)
 
 
