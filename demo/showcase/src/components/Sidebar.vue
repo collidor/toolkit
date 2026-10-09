@@ -26,7 +26,7 @@ const NAV_SECTIONS: NavSection[] = [
   {
     title: "Getting Started",
     items: [
-      { id: "overview", title: "Overview", badge: "v1.0.0" },
+      { id: "overview", title: "Overview", badge: "v1.2.0" },
       { id: "installation", title: "Installation" },
     ],
   },
